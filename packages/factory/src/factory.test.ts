@@ -529,23 +529,24 @@ describe("#factory", () => {
     it("creatse an object with an extended factory", async () => {
       const { props, vars } = factory.define({
         props: {
-          firstName: () => "John",
-          lastName: () => "Doe",
+          name: () => "John",
+          unusedProp: () => "",
         },
         vars: {
           permissions: () => ["read", "write"],
+          unusedVar: () => "",
         },
       }).def;
       const employee = await factory
         .define(
           {
             props: {
-              ...props,
+              name: props.name,
               isAdmin: () => false,
               canRead: later<boolean>(),
             },
             vars: {
-              ...vars,
+              permissions: vars.permissions,
               role: () => "admin",
             },
           },
@@ -558,18 +559,16 @@ describe("#factory", () => {
         })
         .create();
       expect(employee).toStrictEqual({
-        firstName: "John",
-        lastName: "Doe",
+        name: "John",
+        isSaved: true,
         isAdmin: true,
         canRead: true,
-        isSaved: true,
       });
       expectTypeOf(employee).toEqualTypeOf<{
+        name: string;
+        isSaved: boolean;
         isAdmin: boolean;
         canRead: boolean;
-        firstName: string;
-        lastName: string;
-        isSaved: boolean;
       }>();
     });
   });
