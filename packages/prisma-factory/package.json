@@ -1,6 +1,6 @@
 {
   "name": "@factory-js/prisma-factory",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "author": "Tomoyuki Kai <ktmouk@gmail.com>",
   "description": "🏭 The factory-js plugin for Prisma",
