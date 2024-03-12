@@ -1,6 +1,6 @@
 {
   "name": "@factory-js/factory",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": false,
   "author": "Tomoyuki Kai <ktmouk@gmail.com>",
   "description": "🏭 The ORM-agnostic object generator for testing",
