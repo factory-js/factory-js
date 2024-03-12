@@ -9,7 +9,7 @@ Contributions are essential to achieving this goal, and we welcome contributions
 
 ### Fixing bugs
 
-We appreciate it if you communicate through a [issues](./issues/new/choose) when you find a bug.  
+We would appreciate it if you could report any bugs using [Issues](https://github.com/factory-js/factory-js/issues/new/choose).
 If you believe you can fix the bug you found, we welcome you to submit a PR directly, no issue report required!  
 Also, we would appreciate it if you could consider adding tests to prevent the bug from happening again.
 
