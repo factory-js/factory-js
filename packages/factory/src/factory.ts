@@ -1,6 +1,7 @@
 import type { Create } from "../types/create";
 import type { Deps } from "../types/deps";
 import type { InitProps } from "../types/init-props";
+import type { InitVars } from "../types/init-vars";
 import type { Props } from "../types/props";
 import type { Trait } from "../types/trait";
 import type { TraitSet } from "../types/trait-set";
@@ -17,6 +18,7 @@ class Factory<
   T extends TraitSet<P, V>,
 > {
   readonly #initProps: InitProps<P>;
+  readonly #initVars: InitVars<V>;
   readonly #props: Props<P, V>;
   readonly #vars: Vars<V>;
   readonly #create: Create<P, O>;
@@ -24,18 +26,21 @@ class Factory<
 
   constructor({
     initProps,
+    initVars,
     props,
     vars,
     create,
     traits,
   }: {
     initProps: InitProps<P>;
+    initVars: InitVars<V>;
     props: Props<P, V>;
     vars: Vars<V>;
     create: Create<P, O>;
     traits: T;
   }) {
     this.#initProps = initProps;
+    this.#initVars = initVars;
     this.#props = props;
     this.#vars = vars;
     this.#create = create;
@@ -114,13 +119,14 @@ class Factory<
   get def() {
     return {
       props: this.#initProps,
-      vars: this.#vars,
+      vars: this.#initVars,
     };
   }
 
   get #clone() {
     return {
       initProps: this.#initProps,
+      initVars: this.#initVars,
       props: this.#props,
       create: this.#create,
       traits: this.#traits,
@@ -150,11 +156,12 @@ const define = <
   O = never,
   V extends UnknownRecord = Record<never, never>,
 >(
-  { props, vars }: { props: InitProps<P>; vars: Vars<V> },
+  { props, vars }: { props: InitProps<P>; vars: InitVars<V> },
   create: Create<P, O> = noCreate,
 ) =>
   new Factory({
     initProps: props,
+    initVars: vars,
     traits: {},
     props,
     vars,
