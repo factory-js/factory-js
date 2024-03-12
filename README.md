@@ -269,7 +269,7 @@ This plugin generates factories based on your Prisma schema file, so you don't n
 
    ```
    generator factory {
-     provider = "@factory-js/prisma-factory"
+     provider = "prisma-factory"
      output   = "./generated" // optional
    }
    ```
