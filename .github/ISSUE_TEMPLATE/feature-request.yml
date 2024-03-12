@@ -1,0 +1,10 @@
+name: 🚀 Feature request
+description: Request a new feature or improvement.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    attributes:
+      label: Describe your proposal
+      description: A clear and concise proposal about a new feature or improvement.
+    validations:
+      required: true

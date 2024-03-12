@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🙏 Ask a question
+    url: https://github.com/orgs/factory-js/discussions
+    about: Ask a question on the GitHub Discussions.

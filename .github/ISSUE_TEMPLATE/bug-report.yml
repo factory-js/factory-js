@@ -1,0 +1,33 @@
+name: 🐛 Bug Report
+description: Report a bug that should be fixed.
+labels: ["bug"]
+body:
+  - type: textarea
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: To Reproduce
+      description: Please describe how to reproduce the bug. Including reproduction code would also be helpful.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Environment
+      description: Please complete the following information.
+      value: |
+        - Factory-js version: <!-- e.g. @factory-js/factory v0.0.0 -->
+        - Factory-js plugin version if you are using: <!-- e.g. @factory-js/prisma-factory v0.0.0 -->
+        - ORM: <!-- e.g. Prisma v0.0.0 -->
+        - DB: <!-- e.g. PostgreSQL v0.0.0 -->
+    validations:
+      required: true

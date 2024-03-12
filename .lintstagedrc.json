@@ -1,0 +1,5 @@
+{
+  "*.{ts,js,cjs,mjs}": ["eslint --fix --max-warnings=0", "prettier -w -u"],
+  "*.{md,html,css,scss,json,yml,yaml}": ["prettier -w -u"],
+  "**/*": ["secretlint --maskSecrets"]
+}

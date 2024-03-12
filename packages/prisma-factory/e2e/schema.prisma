@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator factory {
+  provider   = "tsx ./dist/bin.cjs"
+  randModule = "../../dist"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id      Int      @id
+  name    String
+  role    Role
+  profile Profile?
+  posts   Post[]   @relation("author")
+}
+
+model Profile {
+  id     Int    @id
+  userId Int    @unique
+  image  String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Post {
+  id          Int                 @id
+  description String              @unique
+  authorId    Int
+  author      User                @relation(name: "author", fields: [authorId], references: [id])
+  categories  CategoriesOnPosts[]
+}
+
+model CategoriesOnPosts {
+  post       Post     @relation(fields: [postId], references: [id])
+  postId     Int
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+
+  @@id([postId, categoryId])
+}
+
+model Category {
+  id    Int                 @id
+  name  String
+  posts CategoriesOnPosts[]
+}
+
+model Folder {
+  id       Int      @id
+  name     String?
+  parentId Int?
+  parent   Folder?  @relation("Folder", fields: [parentId], references: [id])
+  children Folder[] @relation("Folder")
+}
+
+model AllTypes {
+  bigInt   BigInt   @id
+  bytes    Bytes
+  boolean  Boolean
+  dateTime DateTime
+  decimal  Decimal
+  float    Float
+  string   String
+  int      Int
+  json     Json
+  enum     Role
+  array    String[]
+}
+
+model user_event_log {
+  id Int @id
+}

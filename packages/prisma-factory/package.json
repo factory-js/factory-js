@@ -1,0 +1,76 @@
+{
+  "name": "@factory-js/prisma-factory",
+  "version": "0.0.0",
+  "private": false,
+  "author": "Tomoyuki Kai <ktmouk@gmail.com>",
+  "description": "🏭 The factory-js plugin for Prisma",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "factory",
+    "test",
+    "orm",
+    "prisma"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/factory-js/factory-js.git",
+    "directory": "packages/prisma-factory"
+  },
+  "bugs": "https://github.com/factory-js/factory-js/issues",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "bin": {
+    "@factory-js/prisma-factory": "./dist/bin.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "db:generate": "prisma generate",
+    "db:reset": "prisma db push --force-reset",
+    "format:fix": "prisma format",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "clean": "rm -rf node_modules .turbo dist e2e/generated"
+  },
+  "prisma": {
+    "schema": "e2e/schema.prisma"
+  },
+  "devDependencies": {
+    "@factory-js/factory": "workspace:*",
+    "@prisma/internals": "^5.9.1",
+    "@prisma/client": "5.9.1",
+    "@types/node": "18.15.13",
+    "@vitest/coverage-v8": "^0.34.4",
+    "lint-staged": "^13.2.1",
+    "prisma": "^5.5.2",
+    "tsup": "^8.0.2",
+    "tsx": "^4.7.1",
+    "typescript": "5.2.2",
+    "vitest": "^0.34.4"
+  },
+  "dependencies": {
+    "@ngneat/falso": "^7.1.1",
+    "@prisma/generator-helper": "^5.9.1",
+    "decimal.js": "^10.4.3",
+    "prettier": "^3.2.5"
+  }
+}

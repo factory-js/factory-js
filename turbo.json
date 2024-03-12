@@ -1,0 +1,35 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "type-check": {
+      "dependsOn": ["db:generate"],
+      "cache": false
+    },
+    "test": {
+      "dependsOn": ["db:reset"],
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    },
+    "format:fix": {
+      "cache": false
+    },
+    "db:reset": {
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "db:generate": {
+      "dependsOn": ["build"],
+      "cache": false
+    }
+  }
+}
