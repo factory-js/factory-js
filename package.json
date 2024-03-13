@@ -6,6 +6,7 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "test": "turbo run test",
+    "test:coverage": "turbo run test:coverage",
     "lint": "eslint --max-warnings=0 '**/*.{ts,js,cjs,mjs}'",
     "type-check": "turbo run type-check",
     "db:generate": "turbo run db:generate",
