@@ -47,4 +47,4 @@ jobs:
           cp packages/prisma-factory/e2e/.env.sample packages/prisma-factory/e2e/.env
 
       - name: Run test
-        run: pnpm test
+        run: pnpm run test:coverage
