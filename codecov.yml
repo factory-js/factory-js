@@ -7,12 +7,9 @@ flag_management:
       - type: patch
         target: 100%
   individual_flags:
+    - name: factory
+      paths:
+        - packages/factory
     - name: prisma-factory
       paths:
         - packages/prisma-factory
-      carryforward: true
-      statuses:
-        - type: project
-          target: 95%
-        - type: patch
-          target: 100%
