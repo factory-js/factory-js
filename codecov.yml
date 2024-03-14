@@ -1,0 +1,15 @@
+flag_management:
+  default_rules:
+    carryforward: true
+    statuses:
+      - type: project
+        target: 100%
+      - type: patch
+        target: 100%
+  individual_flags:
+    - name: factory
+      paths:
+        - packages/factory
+    - name: prisma-factory
+      paths:
+        - packages/prisma-factory

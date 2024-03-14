@@ -17,6 +17,10 @@
       "dependsOn": ["db:reset"],
       "cache": false
     },
+    "test:coverage": {
+      "dependsOn": ["db:reset"],
+      "cache": false
+    },
     "clean": {
       "cache": false
     },

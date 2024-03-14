@@ -47,4 +47,18 @@ jobs:
           cp packages/prisma-factory/e2e/.env.sample packages/prisma-factory/e2e/.env
 
       - name: Run test
-        run: pnpm test
+        run: pnpm run test:coverage
+
+      - name: Upload factory coverage report
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          files: ./packages/factory/coverage-final.json
+          flags: factory
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload prisma-factory coverage report
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          files: ./packages/prisma-factory/coverage-final.json
+          flags: prisma-factory
+          token: ${{ secrets.CODECOV_TOKEN }}
