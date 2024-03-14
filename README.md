@@ -1,6 +1,11 @@
 <p align="center"><img width="80px" height="80px" src="logo.svg" alt=""></p>
 <h1 align="center">factory-js</h1>
 <p align="center">🏭 The ORM-agnostic object generator for testing<p>
+<p align="center">
+  <a href="https://codecov.io/gh/factory-js/factory-js">
+    <img src="https://codecov.io/gh/factory-js/factory-js/graph/badge.svg?token=KJ4A3X0EJG" /> 
+  </a>
+<p>
 
 ## ⭐️ Mission
 
