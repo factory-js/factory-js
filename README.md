@@ -267,7 +267,7 @@ This plugin generates factories based on your Prisma schema file, so you don't n
 1. Install core and plugin packages.
 
    ```sh
-   npm i @factory-js/factory @factory-js/prisma-factory
+   npm i --save-dev @factory-js/factory @factory-js/prisma-factory
    ```
 
 2. Add the generator config to your Prisma schema file.
@@ -343,7 +343,7 @@ While factory-js does not have plugins for all ORMs, it likely has the capabilit
 1. Install the core package.
 
    ```sh
-   npm i @factory-js/factory
+   npm i --save-dev @factory-js/factory
    ```
 
 2. Define factories yourself according to the example below.  
