@@ -18,18 +18,31 @@ enum Role {
 }
 
 model User {
-  id      Int      @id
-  name    String
-  role    Role
-  profile Profile?
-  posts   Post[]   @relation("author")
+  id        Int      @id
+  firstName String
+  lastName  String
+  role      Role
+  profile   Profile?
+  session   Session?
+  posts     Post[]   @relation("author")
+
+  @@unique([firstName, lastName])
+}
+
+model Session {
+  id     Int    @id
+  userId Int    @unique
+  token  String
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 model Profile {
-  id     Int    @id
-  userId Int    @unique
-  image  String
-  user   User   @relation(fields: [userId], references: [id])
+  id        Int    @id
+  user      User   @relation(fields: [firstName, lastName], references: [firstName, lastName])
+  firstName String
+  lastName  String
+
+  @@unique([firstName, lastName])
 }
 
 model Post {

@@ -6,8 +6,8 @@ import {
 } from "../generated/factories";
 
 describe("ManyToMany", () => {
-  describe("when a factory creates post's categories", () => {
-    it("saves categories", async () => {
+  describe("when a schema has a many-to-many relation", () => {
+    it("can create the model", async () => {
       const post = await definePostFactory(db).create();
       await defineCategoriesOnPostsFactory(db)
         .props({ postId: () => post.id })
