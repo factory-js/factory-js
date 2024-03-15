@@ -38,6 +38,9 @@
   "files": [
     "dist"
   ],
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup",
