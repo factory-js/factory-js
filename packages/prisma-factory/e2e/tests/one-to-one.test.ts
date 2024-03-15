@@ -2,45 +2,57 @@ import { describe, expect, it } from "vitest";
 import { db } from "../db";
 import {
   defineProfileFactory,
+  defineSessionFactory,
   defineUserFactory,
 } from "../generated/factories";
 
 describe("OneToOne", () => {
-  describe("when a factory creates a profile", () => {
-    it("saves a profile and user", async () => {
-      const profile = await defineProfileFactory(db).create();
+  describe("when a schema has a one-to-one relation", () => {
+    it("can create the model", async () => {
+      const session = await defineSessionFactory(db).create();
       await expect(
-        db.profile.findUnique({ where: { id: profile.id } }),
+        db.session.findUnique({ where: { id: session.id } }),
       ).resolves.not.toBeNull();
       await expect(
-        db.user.findUnique({ where: { id: profile.userId } }),
+        db.user.findUnique({ where: { id: session.userId } }),
       ).resolves.not.toBeNull();
     });
   });
 
-  describe("when a user is specified", () => {
-    it("saves the user", async () => {
+  describe("when a releated model is specified with vars", () => {
+    it("can create the model", async () => {
+      const user = await defineUserFactory(db).create();
+      const session = await defineSessionFactory(db)
+        .vars({ user: () => user })
+        .create();
+      const savedUser = await db.session.findFirstOrThrow({
+        where: { id: session.id },
+      });
+      expect(savedUser.userId).toBe(user.id);
+    });
+  });
+
+  describe("when a releated model is specified with props", () => {
+    it("can create the model", async () => {
+      const user = await defineUserFactory(db).create();
+      const session = await defineSessionFactory(db)
+        .props({ userId: () => user.id })
+        .create();
+      const savedUser = await db.session.findFirstOrThrow({
+        where: { id: session.id },
+      });
+      expect(savedUser.userId).toBe(user.id);
+    });
+  });
+
+  describe("when a table has multiple foreign keys", () => {
+    it("can create the model", async () => {
       const user = await defineUserFactory(db).create();
       const profile = await defineProfileFactory(db)
         .vars({ user: () => user })
         .create();
-      const savedUser = await db.profile.findFirstOrThrow({
-        where: { id: profile.id },
-      });
-      expect(savedUser.userId).toBe(user.id);
-    });
-  });
-
-  describe("when a user is specified with the userId", () => {
-    it("saves the user", async () => {
-      const user = await defineUserFactory(db).create();
-      const profile = await defineProfileFactory(db)
-        .props({ userId: () => user.id })
-        .create();
-      const savedUser = await db.profile.findFirstOrThrow({
-        where: { id: profile.id },
-      });
-      expect(savedUser.userId).toBe(user.id);
+      expect(profile.firstName).toBe(user.firstName);
+      expect(profile.lastName).toBe(user.lastName);
     });
   });
 });

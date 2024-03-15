@@ -9,20 +9,21 @@ import {
 } from "../generated/factories";
 
 describe("Basic", () => {
-  describe("when a factory builds a user", () => {
-    it("returns a user", async () => {
+  describe("when a factory builds a model", () => {
+    it("returns the model", async () => {
       const user = await defineUserFactory(db).build();
       expect(user).toStrictEqual({
         id: expect.any(Number) as unknown,
-        name: expect.any(String) as unknown,
+        firstName: expect.any(String) as unknown,
+        lastName: expect.any(String) as unknown,
         role: expect.any(String) as unknown,
       });
       expectTypeOf(user).toEqualTypeOf<Prisma.UserUncheckedCreateInput>();
     });
   });
 
-  describe("when a value is specified", () => {
-    it("uses the value", async () => {
+  describe("when a field is specified", () => {
+    it("uses the specified field", async () => {
       const user = await defineUserFactory(db)
         .props({ role: () => "ADMIN" })
         .build();
@@ -30,8 +31,8 @@ describe("Basic", () => {
     });
   });
 
-  describe("when a factory creates a user", () => {
-    it("saves a user", async () => {
+  describe("when a factory creates a model", () => {
+    it("can create the model", async () => {
       const user = await defineUserFactory(db).create();
       await expect(
         db.user.findUnique({ where: { id: user.id } }),

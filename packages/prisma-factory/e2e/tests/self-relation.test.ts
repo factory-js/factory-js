@@ -3,8 +3,8 @@ import { db } from "../db";
 import { defineFolderFactory } from "../generated/factories";
 
 describe("SelfRelation", () => {
-  describe("when a factory creates a folder", () => {
-    it("saves a folder", async () => {
+  describe("when a schema has a self relation", () => {
+    it("can create the model", async () => {
       const folder = await defineFolderFactory(db).create();
       await expect(
         db.folder.findUnique({ where: { id: folder.id } }),
@@ -12,8 +12,8 @@ describe("SelfRelation", () => {
     });
   });
 
-  describe("when a factory creates a parent and children", () => {
-    it("save a parent and children", async () => {
+  describe("when a releated model is specified with vars", () => {
+    it("can create the model", async () => {
       const parent = await defineFolderFactory(db).create();
       await defineFolderFactory(db)
         .vars({ parent: () => parent })
