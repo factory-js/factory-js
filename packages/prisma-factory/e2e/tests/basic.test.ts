@@ -9,8 +9,8 @@ import {
 } from "../generated/factories";
 
 describe("Basic", () => {
-  describe("when a factory builds a model", () => {
-    it("returns the model", async () => {
+  describe("when a factory builds an object", () => {
+    it("can build the object", async () => {
       const user = await defineUserFactory(db).build();
       expect(user).toStrictEqual({
         id: expect.any(Number) as unknown,
@@ -31,8 +31,8 @@ describe("Basic", () => {
     });
   });
 
-  describe("when a factory creates a model", () => {
-    it("can create the model", async () => {
+  describe("when a factory creates an object", () => {
+    it("can create the object", async () => {
       const user = await defineUserFactory(db).create();
       await expect(
         db.user.findUnique({ where: { id: user.id } }),
@@ -51,8 +51,8 @@ describe("Basic", () => {
 
   describe("when a factory has all type values", () => {
     it("can build all values", async () => {
-      const model = await defineAllTypesFactory(db).build();
-      expect(model).toStrictEqual({
+      const object = await defineAllTypesFactory(db).build();
+      expect(object).toStrictEqual({
         bigInt: expect.any(BigInt) as unknown,
         bytes: expect.any(Buffer) as unknown,
         boolean: expect.any(Boolean) as unknown,
@@ -65,7 +65,7 @@ describe("Basic", () => {
         enum: expect.any(String) as unknown,
         array: expect.any(Array) as unknown,
       });
-      expectTypeOf(model).toEqualTypeOf<Prisma.AllTypesUncheckedCreateInput>();
+      expectTypeOf(object).toEqualTypeOf<Prisma.AllTypesUncheckedCreateInput>();
     });
   });
 });

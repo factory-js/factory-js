@@ -8,7 +8,7 @@ import {
 
 describe("OneToOne", () => {
   describe("when a schema has a one-to-one relation", () => {
-    it("can create the model", async () => {
+    it("can create the object", async () => {
       const session = await defineSessionFactory(db).create();
       await expect(
         db.session.findUnique({ where: { id: session.id } }),
@@ -19,8 +19,8 @@ describe("OneToOne", () => {
     });
   });
 
-  describe("when a releated model is specified with vars", () => {
-    it("can create the model", async () => {
+  describe("when a releated object is specified with vars", () => {
+    it("can create the object", async () => {
       const user = await defineUserFactory(db).create();
       const session = await defineSessionFactory(db)
         .vars({ user: () => user })
@@ -32,8 +32,8 @@ describe("OneToOne", () => {
     });
   });
 
-  describe("when a releated model is specified with props", () => {
-    it("can create the model", async () => {
+  describe("when a releated object is specified with props", () => {
+    it("can create the object", async () => {
       const user = await defineUserFactory(db).create();
       const session = await defineSessionFactory(db)
         .props({ userId: () => user.id })
@@ -46,7 +46,7 @@ describe("OneToOne", () => {
   });
 
   describe("when a table has multiple foreign keys", () => {
-    it("can create the model", async () => {
+    it("can create the object", async () => {
       const user = await defineUserFactory(db).create();
       const profile = await defineProfileFactory(db)
         .vars({ user: () => user })
