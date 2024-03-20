@@ -1,3 +1,4 @@
+import type { After } from "../types/after";
 import type { Create } from "../types/create";
 import type { Deps } from "../types/deps";
 import type { InitProps } from "../types/init-props";
@@ -15,13 +16,14 @@ class Factory<
   P extends UnknownRecord,
   O,
   V extends UnknownRecord,
-  T extends TraitSet<P, V>,
+  T extends TraitSet<P, V, O>,
 > {
   readonly #initProps: InitProps<P>;
   readonly #initVars: InitVars<V>;
   readonly #props: Props<P, V>;
   readonly #vars: Vars<V>;
   readonly #create: Create<P, O>;
+  readonly #afterHooks: After<O>[];
   readonly #traits: T;
 
   constructor({
@@ -31,6 +33,7 @@ class Factory<
     vars,
     create,
     traits,
+    afterHooks,
   }: {
     initProps: InitProps<P>;
     initVars: InitVars<V>;
@@ -38,6 +41,7 @@ class Factory<
     vars: Vars<V>;
     create: Create<P, O>;
     traits: T;
+    afterHooks: After<O>[];
   }) {
     this.#initProps = initProps;
     this.#initVars = initVars;
@@ -45,6 +49,7 @@ class Factory<
     this.#vars = vars;
     this.#create = create;
     this.#traits = traits;
+    this.#afterHooks = afterHooks;
   }
 
   props(props: Partial<Props<P, V>>) {
@@ -67,7 +72,7 @@ class Factory<
     });
   }
 
-  traits<T2 extends TraitSet<P, V>>(traits: T2 & TraitSet<P, V>) {
+  traits<T2 extends TraitSet<P, V, O>>(traits: T2 & TraitSet<P, V, O>) {
     return new Factory({
       ...this.#clone,
       traits: {
@@ -77,8 +82,8 @@ class Factory<
     });
   }
 
-  use(pick: (traits: T) => Trait<P, V>) {
-    const { props = {}, vars = {} } = pick(this.#traits);
+  use(pick: (traits: T) => Trait<P, V, O>) {
+    const { props = {}, vars = {}, after } = pick(this.#traits);
     return new Factory({
       ...this.#clone,
       props: {
@@ -89,6 +94,17 @@ class Factory<
         ...this.#vars,
         ...vars,
       },
+      afterHooks: [
+        ...this.#afterHooks,
+        ...(after !== undefined ? [after] : []),
+      ],
+    });
+  }
+
+  after(after: After<O>) {
+    return new Factory({
+      ...this.#clone,
+      afterHooks: [...this.#afterHooks, after],
     });
   }
 
@@ -97,23 +113,25 @@ class Factory<
   }
 
   async buildList(count: number) {
-    const models: P[] = [];
+    const objects: P[] = [];
     for (let i = 0; i < count; i++) {
-      models.push(await this.build());
+      objects.push(await this.build());
     }
-    return models;
+    return objects;
   }
 
   async create() {
-    return this.#create(await this.build());
+    const object = await this.#create(await this.build());
+    for (const after of this.#afterHooks) await after(object);
+    return object;
   }
 
   async createList(count: number) {
-    const models: O[] = [];
+    const objects: O[] = [];
     for (let i = 0; i < count; i++) {
-      models.push(await this.create());
+      objects.push(await this.create());
     }
-    return models;
+    return objects;
   }
 
   get def() {
@@ -130,6 +148,7 @@ class Factory<
       props: this.#props,
       create: this.#create,
       traits: this.#traits,
+      afterHooks: this.#afterHooks,
       vars: this.#vars,
     };
   }
@@ -163,6 +182,7 @@ const define = <
     initProps: props,
     initVars: vars,
     traits: {},
+    afterHooks: [],
     props,
     vars,
     create,

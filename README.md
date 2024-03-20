@@ -227,16 +227,36 @@ This is the `.create` version of `.buildList`.
 await userFactory.createList(3);
 ```
 
+### .after
+
+This is the callback function that is called after `.create` has finished.  
+Note that this callback is **not** called when you use `.build`.  
+The common use case is creating 1:N objects.
+
+```typescript
+const userFactory = await factory
+  .define({
+    props: {
+      firstName: () => "John",
+      lastName: () => "Doe",
+    },
+    vars: {},
+  })
+  .after((user) => {
+    postFactory.props({ userId: () => user.id }).buildList(3);
+  });
+```
+
 ### .traits
 
-This enables you to manage properties and variables using a key.  
+This enables you to manage properties, variables and the after hooks using a key.  
 This method is especially useful in cases of [Single-table inheritance](https://www.prisma.io/docs/orm/prisma-schema/data-model/table-inheritance#single-table-inheritance-sti).
 
 ```typescript
 const userFactory = await factory
   .define({
     props: {
-      type: () => 'guest',
+      role: () => 'guest',
       isAdmin: () => false,
     },
     vars: {},
@@ -244,17 +264,39 @@ const userFactory = await factory
   .traits({
     admin: {
       props: {
-        type: () => 'admin',
+        role: () => 'admin',
         isAdmin: () => true
       },
-      vars: {
-        ...
-      },
+      vars: { ... },
+      after: () => { ... }
     }
   })
 
 // Use the trait with `.use`.
 await userFactory.use((t) => t.admin).build();
+```
+
+And you can also use a function in a trait.
+
+```typescript
+const userFactory = await factory
+  .define({
+    props: {
+      role: () => "guest",
+      isAdmin: () => false,
+    },
+    vars: {},
+  })
+  .traits({
+    withRole: (role: string) => ({
+      props: {
+        role: () => role,
+        isAdmin: () => role === "admin",
+      },
+    }),
+  });
+
+await userFactory.use((t) => t.withRole("admin")).build();
 ```
 
 ## 🏭 with Prisma
@@ -307,12 +349,12 @@ In this case, you can use `.vars`. The following example creates two objects: an
 
 ```typescript
 const userFactory = await defineUserFactory(db);
-const userProfileFactory = await defineUserProfileFactory(db);
+const profileFactory = await defineProfileFactory(db);
 
 it("create an admin profile", async () => {
   const user = userFactory.props({ role: () => "ADMIN" }).create();
-  const userProfile = userProfileFactory.vars({ user: () => user }).create();
-  expect(userProfile.userId).toBe(user.id);
+  const profile = profileFactory.vars({ user: () => user }).create();
+  expect(profile.userId).toBe(user.id);
 });
 ```
 
@@ -354,7 +396,7 @@ While factory-js does not have plugins for all ORMs, it likely has the capabilit
    import { db } from "../db";
    import { factory, later } from "@factory-js/factory";
    import { faker } from "@faker-js/faker";
-   import { userProfiles, users } from "../schema";
+   import { profiles, users } from "../schema";
 
    const userFactory = factory.define(
      {
@@ -370,7 +412,7 @@ While factory-js does not have plugins for all ORMs, it likely has the capabilit
      async (props) => (await db.insert(users).values(props).returning())[0]!,
    );
 
-   const userProfileFactory = factory
+   const profileFactory = factory
      .define(
        {
          props: {
@@ -383,7 +425,7 @@ While factory-js does not have plugins for all ORMs, it likely has the capabilit
          },
        },
        async (props) =>
-         (await db.insert(userProfiles).values(props).returning())[0]!,
+         (await db.insert(profiles).values(props).returning())[0]!,
      )
      .props({
        userId: async ({ vars }) => (await vars.user).id,
@@ -391,10 +433,8 @@ While factory-js does not have plugins for all ORMs, it likely has the capabilit
 
    it("creates an admin profile", async () => {
      const user = await userFactory.props({ role: () => "ADMIN" }).create();
-     const userProfile = await userProfileFactory
-       .vars({ user: () => user })
-       .create();
-     expect(userProfile.userId).toBe(user.id);
+     const profile = await profileFactory.vars({ user: () => user }).create();
+     expect(profile.userId).toBe(user.id);
    });
    ```
 
