@@ -1,10 +1,10 @@
-import { expect, it, describe, expectTypeOf } from "vitest";
+import { expect, it, describe, expectTypeOf, vi } from "vitest";
 import { factory } from "./factory";
 import { later, seq } from ".";
 
 describe("#factory", () => {
   describe("when a factory has props", () => {
-    it("builds a model with props", async () => {
+    it("can build an object", async () => {
       const user = await factory
         .define({
           props: {
@@ -23,7 +23,7 @@ describe("#factory", () => {
   });
 
   describe("when a factory has a promise prop", () => {
-    it("builds a model with props", async () => {
+    it("can build an object", async () => {
       const user = await factory
         .define({
           props: {
@@ -42,7 +42,7 @@ describe("#factory", () => {
   });
 
   describe("when a factory has a function prop", () => {
-    it("builds a model with props", async () => {
+    it("can build an object", async () => {
       const greet = () => "hello";
       const user = await factory
         .define({
@@ -60,7 +60,7 @@ describe("#factory", () => {
   });
 
   describe("when a factory has a const prop", () => {
-    it("builds a model with props", async () => {
+    it("can build an object", async () => {
       const user = await factory
         .define({
           props: {
@@ -95,7 +95,7 @@ describe("#factory", () => {
   });
 
   describe("when a factory has nested props", () => {
-    it("builds a model with props", async () => {
+    it("can build an object", async () => {
       const user = await factory
         .define({
           props: {
@@ -144,7 +144,7 @@ describe("#factory", () => {
   });
 
   describe("when a factory has vars", () => {
-    it("builds an object with vars", async () => {
+    it("can build an object with vars", async () => {
       const user = await factory
         .define({
           props: {
@@ -171,7 +171,7 @@ describe("#factory", () => {
   });
 
   describe("when a var depends on other vars", () => {
-    it("builds an object with vars", async () => {
+    it("can build an object with vars", async () => {
       const user = await factory
         .define({
           props: {
@@ -203,7 +203,7 @@ describe("#factory", () => {
   });
 
   describe("when a prop depends on other props and vars", () => {
-    it("builds an object with props and vars", async () => {
+    it("can build an object with props and vars", async () => {
       const user = await factory
         .define({
           props: {
@@ -239,8 +239,8 @@ describe("#factory", () => {
     });
   });
 
-  describe("when a function prop depends on other props and vars", () => {
-    it("builds an object with props and vars", async () => {
+  describe("when a prop depends on a function prop and vars", () => {
+    it("can build an object with props and vars", async () => {
       const greet = () => "Hello";
       const user = await factory
         .define({
@@ -267,7 +267,7 @@ describe("#factory", () => {
     });
   });
 
-  describe("when a props is called from other props multiple times", () => {
+  describe("when a prop is called from other props multiple times", () => {
     it("memos a value and returns the same value", async () => {
       let count = 1;
       const user = await factory
@@ -301,7 +301,7 @@ describe("#factory", () => {
     });
   });
 
-  describe("when a vars is called from other vars and props multiple times", () => {
+  describe("when a var is called from other vars and props multiple times", () => {
     it("memos a value and returns the same value", async () => {
       let count = 1;
       const user = await factory
@@ -347,7 +347,7 @@ describe("#factory", () => {
   });
 
   describe("when a factory uses a trait", () => {
-    it("builds an object with a trait", async () => {
+    it("can build an object with a trait", async () => {
       const user = await factory
         .define(
           {
@@ -372,25 +372,26 @@ describe("#factory", () => {
           },
         })
         .traits({
-          manager: {
+          manager: () => ({
             vars: {
               role: () => "manager",
             },
-          },
-          admin: {
+          }),
+          admin: (name: string) => ({
             props: {
-              name: () => "Admin",
+              name: () => `${name} (admin)`,
             },
             vars: {
               role: () => "admin",
             },
-          },
+          }),
         })
         .use((t) => t.guest)
-        .use((t) => t.admin)
+        .use((t) => t.manager())
+        .use((t) => t.admin("Tom"))
         .create();
       expect(user).toStrictEqual({
-        name: "Admin",
+        name: "Tom (admin)",
         isAdmin: true,
         isSaved: true,
       });
@@ -399,6 +400,52 @@ describe("#factory", () => {
         isAdmin: boolean;
         isSaved: boolean;
       }>();
+    });
+  });
+
+  describe("when a factory uses a function trait without invoking it", () => {
+    it("throws a type error", () => {
+      factory
+        .define({
+          props: {
+            name: () => "John",
+            isAdmin: later<boolean>(),
+          },
+          vars: {},
+        })
+        .traits({
+          admin: (name: string) => ({
+            props: {
+              name: () => `${name} (admin)`,
+              isAdmin: () => true,
+            },
+          }),
+        })
+        // @ts-expect-error throw a type error
+        .use((t) => t.admin);
+    });
+  });
+
+  describe("when a factory uses a function trait with invalid arguments", () => {
+    it("throws a type error", () => {
+      factory
+        .define({
+          props: {
+            name: () => "John",
+            isAdmin: later<boolean>(),
+          },
+          vars: {},
+        })
+        .traits({
+          admin: (name: string) => ({
+            props: {
+              name: () => `${name} (admin)`,
+              isAdmin: () => true,
+            },
+          }),
+        })
+        // @ts-expect-error throw a type error
+        .use((t) => t.admin(1));
     });
   });
 
@@ -418,7 +465,23 @@ describe("#factory", () => {
     });
   });
 
-  describe("when an unknown props is added", () => {
+  describe("when a prop that has an invalid type is added", () => {
+    it("throws a type error", () => {
+      factory
+        .define({
+          props: {
+            name: () => "John",
+          },
+          vars: {},
+        })
+        .props({
+          // @ts-expect-error throw a type error
+          name: () => 1,
+        });
+    });
+  });
+
+  describe("when an unknown var is added", () => {
     it("throws a type error", () => {
       factory
         .define({
@@ -427,13 +490,30 @@ describe("#factory", () => {
           },
           vars: {
             isAdmin: () => true,
-            age: () => 20,
           },
         })
         .vars({
           isAdmin: () => true,
           // @ts-expect-error throw a type error
           role: () => "admin",
+        });
+    });
+  });
+
+  describe("when a var that has an invalid type is added", () => {
+    it("throws a type error", () => {
+      factory
+        .define({
+          props: {
+            name: () => "John",
+          },
+          vars: {
+            isAdmin: () => true,
+          },
+        })
+        .vars({
+          // @ts-expect-error throw a type error
+          isAdmin: () => "true",
         });
     });
   });
@@ -484,8 +564,54 @@ describe("#factory", () => {
     });
   });
 
+  describe("when a function trait has a prop that has invalid type", () => {
+    it("throws a type error", () => {
+      factory
+        .define({
+          props: {
+            name: () => "John",
+          },
+          vars: {
+            isAdmin: () => true,
+            age: () => 20,
+          },
+        })
+        .traits({
+          // @ts-expect-error throw a type error
+          admin: () => ({
+            props: {
+              name: () => 1,
+            },
+          }),
+        });
+    });
+  });
+
+  describe("when a function trait has a var that has invalid type", () => {
+    it("throws a type error", () => {
+      factory
+        .define({
+          props: {
+            name: () => "John",
+          },
+          vars: {
+            isAdmin: () => true,
+            age: () => 20,
+          },
+        })
+        .traits({
+          // @ts-expect-error throw a type error
+          admin: () => ({
+            vars: {
+              isAdmin: () => 1,
+            },
+          }),
+        });
+    });
+  });
+
   describe("when a factory has the create function", () => {
-    it("creates an object with the create function", async () => {
+    it("can create an object", async () => {
       const user = await factory
         .define(
           {
@@ -508,7 +634,7 @@ describe("#factory", () => {
     });
   });
 
-  describe("when a factory has no create function", () => {
+  describe("when a factory does not have the create function", () => {
     it("throws an error", async () => {
       await expect(() =>
         factory
@@ -525,8 +651,57 @@ describe("#factory", () => {
     });
   });
 
+  describe("when a factory has the after hooks", () => {
+    it("calls the after hooks after creating an object", async () => {
+      const afterHooks = [vi.fn(), vi.fn()] as const;
+      await factory
+        .define(
+          {
+            props: {
+              name: () => "John",
+            },
+            vars: {},
+          },
+          (props) => ({ ...props, isSaved: true }),
+        )
+        .after((user) => {
+          afterHooks[0](user);
+        })
+        .after((user) => {
+          afterHooks[1](user);
+        })
+        .create();
+      expect(afterHooks[0]).toHaveBeenCalledWith({
+        name: "John",
+        isSaved: true,
+      });
+      expect(afterHooks[1]).toHaveBeenCalledWith({
+        name: "John",
+        isSaved: true,
+      });
+    });
+  });
+
+  describe("when a factory that has the after hook builds an object", () => {
+    it("does not call the after hooks", async () => {
+      const after = vi.fn();
+      await factory
+        .define({
+          props: {
+            name: () => "John",
+          },
+          vars: {},
+        })
+        .after((user) => {
+          after(user);
+        })
+        .build();
+      expect(after).not.toHaveBeenCalled();
+    });
+  });
+
   describe("when a factory is extended", () => {
-    it("creatse an object with an extended factory", async () => {
+    it("can create an object", async () => {
       const { props, vars } = factory.define({
         props: {
           name: () => "John",
@@ -574,7 +749,7 @@ describe("#factory", () => {
   });
 
   describe("when a factory builds multiple objects", () => {
-    it("builds multiple objects", async () => {
+    it("can build multiple objects", async () => {
       const users = await factory
         .define({
           props: {
@@ -589,7 +764,7 @@ describe("#factory", () => {
   });
 
   describe("when a factory creates multiple objects", () => {
-    it("creatse multiple objects", async () => {
+    it("can create multiple objects", async () => {
       const users = await factory
         .define(
           {
@@ -609,8 +784,29 @@ describe("#factory", () => {
     });
   });
 
-  describe("when factories build 1:1 relation objects", () => {
-    it("builds objects", async () => {
+  describe("when a factory that has the after hooks creates multiple objects", () => {
+    it("calls the after hooks after creating objects", async () => {
+      const after = vi.fn();
+      await factory
+        .define(
+          {
+            props: {
+              name: () => "John",
+            },
+            vars: {},
+          },
+          (props) => ({ ...props, isSaved: true }),
+        )
+        .after((user) => {
+          after(user);
+        })
+        .createList(2);
+      expect(after).toHaveBeenCalledTimes(2);
+    });
+  });
+
+  describe("when a factory has 1:1 relation", () => {
+    it("can build objects", async () => {
       const profileFactory = factory.define({
         props: {
           id: seq(1, (n) => n),
@@ -642,8 +838,8 @@ describe("#factory", () => {
     });
   });
 
-  describe("when factories build 1:N relation objects", () => {
-    it("builds objects", async () => {
+  describe("when a factory has 1:N relation", () => {
+    it("can build objects", async () => {
       const userFactory = factory.define({
         props: {
           id: seq(1, (n) => n),
@@ -673,8 +869,8 @@ describe("#factory", () => {
     });
   });
 
-  describe("when factories has the M:N relation", () => {
-    it("builds objects", async () => {
+  describe("when a factory has the M:N relation", () => {
+    it("can build objects", async () => {
       const reviewerFactory = factory.define({
         props: {
           id: seq(1, (n) => n),
@@ -719,8 +915,8 @@ describe("#factory", () => {
     });
   });
 
-  describe("when factories has the self relation", () => {
-    it("builds objects", async () => {
+  describe("when a factory has the self relation", () => {
+    it("can build objects", async () => {
       type User = { id: number; teacherId: number | undefined };
       const userFactory = factory
         .define({
