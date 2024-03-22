@@ -174,21 +174,6 @@ const item = await itemFactory.build();
 console.log(item); // { label: '$90' }
 ```
 
-### seq
-
-This is a small helper that generates sequence numbers, which is useful to create an unique value.
-
-```typescript
-import { factory, seq } from "@factory-js/factory";
-
-const userFactory = await factory.define({
-  props: {
-    email: seq(1, (n) => `test${n}@example.com`),
-  },
-  vars: {},
-});
-```
-
 ### .create
 
 If you want to save the built object in the database, you can use `.create` instead of `.build`.  
@@ -231,7 +216,7 @@ await userFactory.createList(3);
 
 This is the callback function that is called after `.create` has finished.  
 Note that this callback is **not** called when you use `.build`.  
-The common use case is creating 1:N objects.
+The common use case is creating 1:N or M:N objects.
 
 ```typescript
 const userFactory = await factory
