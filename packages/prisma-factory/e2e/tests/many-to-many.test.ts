@@ -7,7 +7,7 @@ import {
 
 describe("ManyToMany", () => {
   describe("when a schema has a many-to-many relation", () => {
-    it("can create the model", async () => {
+    it("can create the object", async () => {
       const post = await definePostFactory(db).create();
       await defineCategoriesOnPostsFactory(db)
         .props({ postId: () => post.id })

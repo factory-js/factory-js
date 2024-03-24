@@ -348,6 +348,7 @@ describe("#factory", () => {
 
   describe("when a factory uses a trait", () => {
     it("can build an object with a trait", async () => {
+      const after = vi.fn();
       const user = await factory
         .define(
           {
@@ -384,6 +385,9 @@ describe("#factory", () => {
             vars: {
               role: () => "admin",
             },
+            after: (user) => {
+              after(user);
+            },
           }),
         })
         .use((t) => t.guest)
@@ -391,6 +395,11 @@ describe("#factory", () => {
         .use((t) => t.admin("Tom"))
         .create();
       expect(user).toStrictEqual({
+        name: "Tom (admin)",
+        isAdmin: true,
+        isSaved: true,
+      });
+      expect(after).toHaveBeenCalledWith({
         name: "Tom (admin)",
         isAdmin: true,
         isSaved: true,
