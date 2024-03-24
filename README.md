@@ -7,11 +7,6 @@
   </a>
 <p>
 
-## ⭐️ Mission
-
-This library is designed to generate objects for testing.  
-Its goal is to help developers save time and write tests more easily and readably.
-
 ## 🚀 Features
 
 - 🔌&nbsp;&nbsp;**ORM Agnostic** - Can be used with Prisma and more!
@@ -24,6 +19,56 @@ Please refer to the section according to the ORM you want to use.
 
 - [with Prisma](#-with-prisma)
 - [with Other ORM](#-with-other-orm)
+
+## ⭐️ Mission
+
+Factory-js is designed to create objects for testing.  
+Its goal is to help developers save time and make writing tests easier and more readable.
+
+For example, you may write tests that use Prisma without using Factory-js, like this:
+
+```typescript
+// user.test.ts
+describe("when a user is admin", () => {
+  it("returns true", async () => {
+    const user = await db.user.create({
+      data: {
+        name: "John",
+        role: "ADMIN",
+      },
+    });
+    expect(isAdmin(user)).toBe(true);
+  });
+});
+```
+
+However, there are maintainability issues to consider.  
+When adding or deleting columns in the user table, it's necessary to update all tests involving the creation of dummy users. Factory-js provides a more efficient way for object creation.
+
+```typescript
+// user-factory.ts
+const userFactory = await factory.define(
+  {
+    props: {
+      name: () => faker.person.firstName(),
+      role: () => faker.helpers.arrayElement(["GUEST", "ADMIN"] as const),
+    },
+    vars: {},
+  },
+  async (props) => await db.user.create({ data: props }),
+);
+
+// user.test.ts
+describe("when a user is admin", () => {
+  it("returns true", async () => {
+    const user = await userFactory.props({ role: () => "ADMIN" }).create();
+    expect(isAdmin(user)).toBe(true);
+  });
+});
+```
+
+Once you define a user factory, you can manage properties centrally and reuse them.  
+Additionally, you can override default values as needed. These features provide good maintainability and readability of tests.
 
 ## 📖 API
 
@@ -343,7 +388,7 @@ it("create an admin profile", async () => {
 });
 ```
 
-When you use this plugin in your real project, we recommend creating a `/factories` directory in the project and then customizing the generated factories according to your preferences in each file, like this:
+When you use this plugin in your real project, we recommend creating a `/factories` directory in the project and then customizing the generated factories according to your preferences in each file, as follows:
 
 ```
 factories/
@@ -365,7 +410,7 @@ If you are looking to learn how to customize factories, the [Examples section](#
 
 ## 🏭 with Other ORM
 
-While factory-js does not have plugins for all ORMs, it likely has the capability to support almost all ORMs by allowing you to define factories yourself.
+While Factory-js does not have plugins for all ORMs, it likely has the capability to support almost all ORMs by allowing you to define factories yourself.
 
 ### 📦 Setup
 
