@@ -1,10 +1,7 @@
 <p align="center"><img width="80px" height="80px" src="logo.svg" alt=""></p>
 <h1 align="center">factory-js</h1>
 <p align="center">🏭 The ORM-agnostic object generator for testing<p>
-<p align="center">
-  <a href="https://codecov.io/gh/factory-js/factory-js">
-    <img src="https://codecov.io/gh/factory-js/factory-js/graph/badge.svg?token=KJ4A3X0EJG" /> 
-  </a>
+<p align="center"><a href="https://codecov.io/gh/factory-js/factory-js"><img alt="coverage" src="https://codecov.io/gh/factory-js/factory-js/graph/badge.svg?token=KJ4A3X0EJG"></a> <a href="https://bundlephobia.com/package/@factory-js/factory"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/%40factory-js%2Ffactory"></a>
 <p>
 
 ## 🚀 Features
