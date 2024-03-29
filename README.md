@@ -17,12 +17,12 @@ Please refer to the section according to the ORM you want to use.
 - [with Prisma](#-with-prisma)
 - [with Other ORM](#-with-other-orm)
 
-## ⭐️ Intro
+## ⭐️ Introduction
 
-Factory-js is designed to create objects for testing.  
-Its goal is to help developers save time and make writing tests easier and more readable.
+Factory-js is a dummy object generator for testing.  
+The goal is to save developers time and to make tests easier to write and read.
 
-For example, you may write tests that use Prisma without using Factory-js, like this:
+For example, the following code tests the function that returns whether the user is an admin.
 
 ```typescript
 // user.test.ts
@@ -37,10 +37,22 @@ describe("when a user is admin", () => {
     expect(isAdmin(user)).toBe(true);
   });
 });
+
+describe("when a user is guest", () => {
+  it("returns true", async () => {
+    const user = await db.user.create({
+      data: {
+        name: "John",
+        role: "GUEST",
+      },
+    });
+    expect(isAdmin(user)).toBe(false);
+  });
+});
 ```
 
-However, there are maintainability issues to consider.  
-When adding or deleting columns in the user table, it's necessary to update all tests involving the creation of dummy users. Factory-js provides a more efficient way for object creation.
+However, these tests have maintainability issues to consider because they directly use the Prisma API to create users. If you want to add or delete some columns in the user table, you also have to update all of the `data` properties in tests.  
+Factory-js provides a more efficient way to create dummy objects.
 
 ```typescript
 // user-factory.ts
@@ -62,10 +74,17 @@ describe("when a user is admin", () => {
     expect(isAdmin(user)).toBe(true);
   });
 });
+
+describe("when a user is guest", () => {
+  it("returns false", async () => {
+    const user = await userFactory.props({ role: () => "GUEST" }).create();
+    expect(isAdmin(user)).toBe(false);
+  });
+});
 ```
 
-Once you define a user factory, you can manage properties centrally and reuse them.  
-Additionally, you can override default values as needed. These features provide good maintainability and readability of tests.
+Once you define the user factory, you can manage user properties centrally and use this factory to create dummy users. Additionally, you can override property values according to test cases.  
+These features provide good maintainability and readability for tests.
 
 ## 📖 API
 
