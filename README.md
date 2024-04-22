@@ -348,7 +348,7 @@ await userFactory.use((t) => t.withRole("admin")).build();
 ### def
 
 You can access the properties and variables of a defined factory by using the `def`.  
-This is useful when you extend a factory from an existing one.
+This is useful when defining a new factory from an existing one.
 
 ```typescript
 const userFactory = await factory
