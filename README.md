@@ -370,7 +370,7 @@ const userFactory = await factory
 const employeeFactory = await factory
   .define({
     props: {
-      ...userFactory.def.props, // { name: () => "John", () => age: 20 }
+      ...userFactory.def.props, // { name: () => "John", age: () => 20 }
       role: () => "admin",
     },
     vars: {
