@@ -302,7 +302,7 @@ This method is especially useful in cases of [Single-table inheritance](https://
 const userFactory = await factory
   .define({
     props: {
-      role: () => 'guest',
+      role: () => "guest",
       isAdmin: () => false,
     },
     vars: {},
@@ -310,7 +310,7 @@ const userFactory = await factory
   .traits({
     admin: {
       props: {
-        role: () => 'admin',
+        role: () => "admin",
         isAdmin: () => true
       },
       vars: { ... },
@@ -343,6 +343,45 @@ const userFactory = await factory
   });
 
 await userFactory.use((t) => t.withRole("admin")).build();
+```
+
+### def
+
+You can access the properties and variables of a defined factory by using the `def`.  
+This is useful when you extend a factory from an existing one.
+
+```typescript
+const userFactory = await factory
+  .define({
+    props: {
+      name: () => "John",
+      age: () => 20,
+    },
+    vars: {
+      title: () => "Mr.",
+    },
+  })
+  // Note that `def` returns the original values as defined in `.define`.
+  // Thus, `userFactory.def.props.age` would return 20, not 50.
+  .props({
+    age: () => 50,
+  });
+
+const employeeFactory = await factory
+  .define({
+    props: {
+      ...userFactory.def.props, // { name: () => "John", () => age: 20 }
+      role: () => "admin",
+    },
+    vars: {
+      ...userFactory.def.vars, // { title: () => "Mr." }
+    },
+  })
+  .props({
+    name: async ({ vars }) => `${await vars.title} John`,
+  });
+
+await employeeFactory.build(); // { name: "Mr. John", age: 20, role: "admin" }
 ```
 
 ## 🏭 with Prisma
