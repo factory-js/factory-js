@@ -1,5 +1,11 @@
 # @factory-js/factory
 
+## 0.2.1
+
+### Patch Changes
+
+- 14b3228: Export the factory class type
+
 ## 0.2.0
 
 ### Minor Changes
