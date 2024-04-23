@@ -10,7 +10,8 @@
     "resolveJsonModule": true,
     "incremental": false,
     "allowJs": false,
-    "checkJs": false
+    "checkJs": false,
+    "declaration": true
   },
   "exclude": ["node_modules"]
 }

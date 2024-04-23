@@ -12,7 +12,7 @@ import { mapValues } from "./utils/map-values";
 import { mapValuesAsync } from "./utils/map-values-async";
 import { proxyDeps } from "./utils/proxy-deps";
 
-class Factory<
+export class Factory<
   P extends UnknownRecord,
   O,
   V extends UnknownRecord,
