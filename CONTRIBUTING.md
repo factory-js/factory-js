@@ -1,7 +1,6 @@
 # Contributing guide
 
-<p style="display: flex; align-items: center;"><img width="60px" height="60px" src="logo.svg" alt="">💛</p> 
-Thank you for your interest in contributing to factory-js!  
+Thank you for your interest in contributing to factory-js.  
 The goal of this library is to enable developers to save time and write tests more easily and readably.  
 Contributions are essential to achieving this goal, and we welcome contributions from everyone!
 
@@ -9,7 +8,7 @@ Contributions are essential to achieving this goal, and we welcome contributions
 
 ### Fixing bugs
 
-We would appreciate it if you could report any bugs using [Issues](https://github.com/factory-js/factory-js/issues/new/choose).
+We would appreciate it if you could report any bugs using [Issues](https://github.com/factory-js/factory-js/issues/new/choose).  
 If you believe you can fix the bug you found, we welcome you to submit a PR directly, no issue report required!  
 Also, we would appreciate it if you could consider adding tests to prevent the bug from happening again.
 
