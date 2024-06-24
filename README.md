@@ -1,4 +1,9 @@
-<div align="center"><img width="64px" src="logo.svg"><h3>factory-js</h3><p>The object generator for testing.<p><p><a href="https://codecov.io/gh/factory-js/factory-js"><img alt="coverage" src="https://codecov.io/gh/factory-js/factory-js/graph/badge.svg?token=KJ4A3X0EJG"></a> <a href="https://bundlephobia.com/package/@factory-js/factory"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/%40factory-js%2Ffactory"></a></p></div><br>
+<div align="center">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="logo-invert.svg">
+  <source media="(prefers-color-scheme: light)" srcset="logo.svg">
+  <img width="48px" src="logo.svg">
+</picture><h3>factory-js</h3><p>The object generator for testing.<p><p><a href="https://codecov.io/gh/factory-js/factory-js"><img alt="coverage" src="https://codecov.io/gh/factory-js/factory-js/graph/badge.svg?token=KJ4A3X0EJG"></a> <a href="https://bundlephobia.com/package/@factory-js/factory"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/%40factory-js%2Ffactory"></a></p></div><br>
 
 ## Features
 
