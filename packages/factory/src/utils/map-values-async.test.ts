@@ -6,7 +6,8 @@ describe("#mapValuesAsync", () => {
     it("returns a mapped object", async () => {
       const object = await mapValuesAsync(
         { foo: 1, bar: 2 },
-        (value: number, key: string) => Promise.resolve(`${key}:${value}`),
+        (value: number, key: string) =>
+          Promise.resolve(`${key}:${value.toString()}`),
       );
       expect(object).toStrictEqual({ foo: "foo:1", bar: "bar:2" });
       expectTypeOf(object).toEqualTypeOf<Record<string, string>>();

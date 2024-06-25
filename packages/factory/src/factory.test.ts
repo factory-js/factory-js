@@ -188,7 +188,8 @@ describe("#factory", () => {
           age: async ({ now, birth }) => (await now) - (await birth),
         })
         .props({
-          ageText: async ({ vars }) => `${await vars.age} years old`,
+          ageText: async ({ vars }) =>
+            `${(await vars.age).toString()} years old`,
         })
         .build();
       expect(user).toStrictEqual({
@@ -281,9 +282,10 @@ describe("#factory", () => {
           vars: {},
         })
         .props({
-          cardId: async ({ props }) => `card:${await props.id}`,
-          roomId: async ({ props }) => `room:${await props.id}`,
-          employeeId: async ({ props }) => `employee:${await props.id}`,
+          cardId: async ({ props }) => `card:${(await props.id).toString()}`,
+          roomId: async ({ props }) => `room:${(await props.id).toString()}`,
+          employeeId: async ({ props }) =>
+            `employee:${(await props.id).toString()}`,
         })
         .build();
       expect(user).toStrictEqual({
@@ -320,9 +322,9 @@ describe("#factory", () => {
           },
         })
         .vars({
-          cardId: async ({ id }) => `card:${await id}`,
-          roomId: async ({ id }) => `room:${await id}`,
-          employeeId: async ({ id }) => `employee:${await id}`,
+          cardId: async ({ id }) => `card:${(await id).toString()}`,
+          roomId: async ({ id }) => `room:${(await id).toString()}`,
+          employeeId: async ({ id }) => `employee:${(await id).toString()}`,
         })
         .props({
           id: async ({ vars }) => await vars.id,
