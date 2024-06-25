@@ -28,13 +28,13 @@ jobs:
           --health-retries 5
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
       - name: Setup node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           node-version-file: ".nvmrc"
           cache: pnpm
@@ -50,14 +50,14 @@ jobs:
         run: pnpm run test:coverage
 
       - name: Upload factory coverage report
-        uses: codecov/codecov-action@v4.5.0
+        uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
         with:
           files: ./packages/factory/coverage-final.json
           flags: factory
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload prisma-factory coverage report
-        uses: codecov/codecov-action@v4.5.0
+        uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
         with:
           files: ./packages/prisma-factory/coverage-final.json
           flags: prisma-factory
