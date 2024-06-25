@@ -7,8 +7,8 @@
       "groupName": "dev dependencies"
     },
     {
-      "matchPackageNames": ["eslint"],
-      "allowedVersions": "<9"
+      "matchManagers": ["github-actions"],
+      "groupName": "github actions"
     }
   ]
 }
