@@ -60,7 +60,7 @@ export class FactoryWriter {
   #writeRelationProps(field: DMMF.Model["fields"][number]) {
     return (field.relationFromFields ?? [])
       .map((fieldName, index) => {
-        const relationToField = field.relationToFields?.[index];
+        const relationToField = field.relationToFields?.[index] ?? "";
         return `${fieldName}: async ({ vars }) => (await vars.${field.name})${field.isRequired ? "" : "?"}.${relationToField}`;
       })
       .join(",");

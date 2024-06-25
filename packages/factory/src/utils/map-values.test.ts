@@ -6,7 +6,7 @@ describe("#mapValues", () => {
     it("returns a mapped object", () => {
       const object = mapValues(
         { foo: 1, bar: 2 },
-        (value: number, key: string) => `${key}:${value}`,
+        (value: number, key: string) => `${key}:${value.toString()}`,
       );
       expect(object).toStrictEqual({ foo: "foo:1", bar: "bar:2" });
       expectTypeOf(object).toEqualTypeOf<Record<string, string>>();
