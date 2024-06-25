@@ -10,6 +10,14 @@
     {
       "matchManagers": ["github-actions"],
       "groupName": "github actions"
+    },
+    {
+      "matchPackageNames": ["eslint"],
+      "allowedVersions": "<9"
+    },
+    {
+      "matchPackageNames": ["node", "@types/node"],
+      "allowedVersions": "<=18"
     }
   ]
 }
