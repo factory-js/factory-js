@@ -61,7 +61,7 @@
     "@factory-js/factory": "workspace:*",
     "@prisma/internals": "^5.9.1",
     "@prisma/client": "5.15.1",
-    "@types/node": "20.14.8",
+    "@types/node": "18.19.39",
     "@vitest/coverage-v8": "^1.0.0",
     "lint-staged": "^15.0.0",
     "prisma": "^5.5.2",
