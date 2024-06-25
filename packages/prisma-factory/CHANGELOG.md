@@ -1,5 +1,11 @@
 # @factory-js/prisma-factory
 
+## 0.1.2
+
+### Patch Changes
+
+- 3bc7b54: fix(deps): update all non-major dependencies
+
 ## 0.1.1
 
 ### Patch Changes
