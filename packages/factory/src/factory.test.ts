@@ -387,8 +387,8 @@ describe("#factory", () => {
             vars: {
               role: () => "admin",
             },
-            after: (user) => {
-              after(user);
+            after: (user, vars) => {
+              after({ user, role: vars.role });
             },
           }),
         })
@@ -402,9 +402,12 @@ describe("#factory", () => {
         isSaved: true,
       });
       expect(after).toHaveBeenCalledWith({
-        name: "Tom (admin)",
-        isAdmin: true,
-        isSaved: true,
+        user: {
+          name: "Tom (admin)",
+          isAdmin: true,
+          isSaved: true,
+        },
+        role: "admin",
       });
       expectTypeOf(user).toEqualTypeOf<{
         name: string;
