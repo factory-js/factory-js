@@ -1,5 +1,11 @@
 # @factory-js/prisma-factory
 
+## 0.1.3
+
+### Patch Changes
+
+- 4c2a0da: fix(deps): update dependency @prisma/generator-helper to v5.16.0
+
 ## 0.1.2
 
 ### Patch Changes

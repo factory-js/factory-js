@@ -1,5 +1,11 @@
 # @factory-js/factory
 
+## 0.3.0
+
+### Minor Changes
+
+- be66e79: feat: support using variables in after hooks
+
 ## 0.2.1
 
 ### Patch Changes
