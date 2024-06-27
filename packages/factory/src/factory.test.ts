@@ -387,8 +387,8 @@ describe("#factory", () => {
             vars: {
               role: () => "admin",
             },
-            after: (user) => {
-              after(user);
+            after: (user, vars) => {
+              after({ user, role: vars.role });
             },
           }),
         })
@@ -402,9 +402,12 @@ describe("#factory", () => {
         isSaved: true,
       });
       expect(after).toHaveBeenCalledWith({
-        name: "Tom (admin)",
-        isAdmin: true,
-        isSaved: true,
+        user: {
+          name: "Tom (admin)",
+          isAdmin: true,
+          isSaved: true,
+        },
+        role: "admin",
       });
       expectTypeOf(user).toEqualTypeOf<{
         name: string;
@@ -664,6 +667,7 @@ describe("#factory", () => {
 
   describe("when a factory has the after hooks", () => {
     it("calls the after hooks after creating an object", async () => {
+      let count = 1;
       const afterHooks = [vi.fn(), vi.fn()] as const;
       await factory
         .define(
@@ -671,25 +675,33 @@ describe("#factory", () => {
             props: {
               name: () => "John",
             },
-            vars: {},
+            vars: {
+              id: () => count++,
+            },
           },
           (props) => ({ ...props, isSaved: true }),
         )
-        .after((user) => {
-          afterHooks[0](user);
+        .after((user, vars) => {
+          afterHooks[0](user, vars);
         })
-        .after((user) => {
-          afterHooks[1](user);
+        .after((user, vars) => {
+          afterHooks[1](user, vars);
         })
         .create();
-      expect(afterHooks[0]).toHaveBeenCalledWith({
-        name: "John",
-        isSaved: true,
-      });
-      expect(afterHooks[1]).toHaveBeenCalledWith({
-        name: "John",
-        isSaved: true,
-      });
+      expect(afterHooks[0]).toHaveBeenCalledWith(
+        {
+          name: "John",
+          isSaved: true,
+        },
+        { id: 1 },
+      );
+      expect(afterHooks[1]).toHaveBeenCalledWith(
+        {
+          name: "John",
+          isSaved: true,
+        },
+        { id: 1 },
+      );
     });
   });
 

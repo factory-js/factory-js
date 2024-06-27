@@ -10,5 +10,5 @@ export type Trait<
 > = Partial<{
   props: Partial<Props<P, V>>;
   vars: Partial<Vars<V>>;
-  after: After<O>;
+  after: After<O, V>;
 }>;
