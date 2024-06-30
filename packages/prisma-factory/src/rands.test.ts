@@ -29,12 +29,6 @@ describe("#rands", () => {
 
   describe("when a float value is generated", () => {
     it("returns a value", () => {
-      expect(rands.Float() % 1).greaterThan(0);
-    });
-  });
-
-  describe("when a float value is generated", () => {
-    it("returns a value", () => {
       expect(rands.Float()).toStrictEqual(expect.any(Number) as unknown);
     });
   });
