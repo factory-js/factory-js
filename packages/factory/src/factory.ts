@@ -3,6 +3,7 @@ import type { Create } from "../types/create";
 import type { Deps } from "../types/deps";
 import type { InitProps } from "../types/init-props";
 import type { InitVars } from "../types/init-vars";
+import type { PromisableRecord } from "../types/promisable-record";
 import type { Props } from "../types/props";
 import type { Trait } from "../types/trait";
 import type { TraitSet } from "../types/trait-set";
@@ -23,7 +24,7 @@ export class Factory<
   readonly #props: Props<P, V>;
   readonly #vars: Vars<V>;
   readonly #create: Create<P, O>;
-  readonly #afterHooks: After<O>[];
+  readonly #afterHooks: After<O, V>[];
   readonly #traits: T;
 
   constructor({
@@ -41,7 +42,7 @@ export class Factory<
     vars: Vars<V>;
     create: Create<P, O>;
     traits: T;
-    afterHooks: After<O>[];
+    afterHooks: After<O, V>[];
   }) {
     this.#initProps = initProps;
     this.#initVars = initVars;
@@ -101,7 +102,7 @@ export class Factory<
     });
   }
 
-  after(after: After<O>) {
+  after(after: After<O, V>) {
     return new Factory({
       ...this.#clone,
       afterHooks: [...this.#afterHooks, after],
@@ -109,7 +110,9 @@ export class Factory<
   }
 
   async build() {
-    return (await mapValuesAsync(this.#propProxies, (prop) => prop)) as P;
+    const vars = proxyDeps(this.#vars);
+    const props = this.#proxyProps(vars);
+    return (await mapValuesAsync(props, (prop) => prop)) as P;
   }
 
   async buildList(count: number) {
@@ -121,8 +124,12 @@ export class Factory<
   }
 
   async create() {
-    const object = await this.#create(await this.build());
-    for (const after of this.#afterHooks) await after(object);
+    const vars = proxyDeps(this.#vars);
+    const props = this.#proxyProps(vars);
+    const object = await this.#create(
+      (await mapValuesAsync(props, (prop) => prop)) as P,
+    );
+    for (const after of this.#afterHooks) await after(object, vars);
     return object;
   }
 
@@ -153,8 +160,7 @@ export class Factory<
     };
   }
 
-  get #propProxies() {
-    const vars = proxyDeps(this.#vars);
+  #proxyProps(vars: PromisableRecord<V>) {
     return proxyDeps(
       mapValues(
         this.#props,

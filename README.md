@@ -1,92 +1,19 @@
-<p align="center"><img width="80px" height="80px" src="logo.svg" alt=""></p>
-<h1 align="center">factory-js</h1>
-<p align="center">🏭 The ORM-agnostic object generator for testing<p>
-<p align="center"><a href="https://codecov.io/gh/factory-js/factory-js"><img alt="coverage" src="https://codecov.io/gh/factory-js/factory-js/graph/badge.svg?token=KJ4A3X0EJG"></a> <a href="https://bundlephobia.com/package/@factory-js/factory"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/%40factory-js%2Ffactory"></a>
-<p>
+<div align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="logo-invert.svg"><source media="(prefers-color-scheme: light)" srcset="logo.svg"><img width="38px" src="logo.svg" alt=""></picture><h3>factory-js</h3><p>The object generator for testing.<p><p><a href="https://codecov.io/gh/factory-js/factory-js"><img alt="coverage" src="https://codecov.io/gh/factory-js/factory-js/graph/badge.svg?token=KJ4A3X0EJG"></a> <a href="https://bundlephobia.com/package/@factory-js/factory"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/min/%40factory-js%2Ffactory"></a></p></div><br>
 
-## 🚀 Features
+## Features
 
-- 🔌&nbsp;&nbsp;**ORM Agnostic** - Can be used with Prisma and more!
-- 🥰&nbsp;&nbsp;**Simple API** - Generates objects with a simple, chainable interface.
+- 🔌&nbsp;&nbsp;**ORM Agnostic** - Can be used with Prisma and more.
+- 💛&nbsp;&nbsp;**Simple API** - Generates objects with a simple, chainable interface.
 - ✅&nbsp;&nbsp;**Fully Typed** - Maximize the benefits of TypeScript.
 
-## 📦 Install
+## Installation
 
 Please refer to the section according to the ORM you want to use.
 
-- [with Prisma](#-with-prisma)
-- [with Other ORM](#-with-other-orm)
+- [with Prisma](#with-prisma)
+- [with other ORMs](#with-other-orms)
 
-## ⭐️ Introduction
-
-Factory-js is a dummy object generator for testing.  
-The goal is to save developers time and to make tests easier to write and read.
-
-For example, the following code tests the function that returns whether the user is an admin.
-
-```typescript
-// user.test.ts
-describe("when a user is admin", () => {
-  it("returns true", async () => {
-    const user = await db.user.create({
-      data: {
-        name: "John",
-        role: "ADMIN",
-      },
-    });
-    expect(isAdmin(user)).toBe(true);
-  });
-});
-
-describe("when a user is guest", () => {
-  it("returns true", async () => {
-    const user = await db.user.create({
-      data: {
-        name: "John",
-        role: "GUEST",
-      },
-    });
-    expect(isAdmin(user)).toBe(false);
-  });
-});
-```
-
-However, these tests have maintainability issues to consider because they directly use the Prisma API to create users. If you want to add or delete some columns in the user table, you also have to update all of the `data` properties in tests.  
-Factory-js provides a more efficient way to create dummy objects.
-
-```typescript
-// user-factory.ts
-const userFactory = await factory.define(
-  {
-    props: {
-      name: () => faker.person.firstName(),
-      role: () => faker.helpers.arrayElement(["GUEST", "ADMIN"] as const),
-    },
-    vars: {},
-  },
-  async (props) => await db.user.create({ data: props }),
-);
-
-// user.test.ts
-describe("when a user is admin", () => {
-  it("returns true", async () => {
-    const user = await userFactory.props({ role: () => "ADMIN" }).create();
-    expect(isAdmin(user)).toBe(true);
-  });
-});
-
-describe("when a user is guest", () => {
-  it("returns false", async () => {
-    const user = await userFactory.props({ role: () => "GUEST" }).create();
-    expect(isAdmin(user)).toBe(false);
-  });
-});
-```
-
-Once you define the user factory, you can manage user properties centrally and use this factory to create dummy users. Additionally, you can override property values according to test cases.  
-These features provide good maintainability and readability for tests.
-
-## 📖 API
+## API
 
 ### .define
 
@@ -184,7 +111,7 @@ const userFactory = await factory
   });
 ```
 
-### dependency props / vars
+### dependent props / vars
 
 You can define properties that depend on other properties.  
 Note that, similar to `.vars`, you cannot refer to other properties in `.define`.  
@@ -384,12 +311,12 @@ const employeeFactory = await factory
 await employeeFactory.build(); // { name: "Mr. John", age: 20, role: "admin" }
 ```
 
-## 🏭 with Prisma
+## with Prisma
 
 Factory-js provides a plugin for Prisma.  
 This plugin generates factories based on your Prisma schema file, so you don't need to define factories yourself.
 
-### 📦 Setup
+### Setup
 
 1. Install core and plugin packages.
 
@@ -412,7 +339,7 @@ This plugin generates factories based on your Prisma schema file, so you don't n
    prisma generate
    ```
 
-### 📖 Usage
+### Usage
 
 To use the generated factories, import the generated file and pass a Prisma client to a function that returns a factory.
 
@@ -461,11 +388,11 @@ export const userFactory = await defineUserFactory(db).props({
 });
 ```
 
-## 🏭 with Other ORM
+## with other ORMs
 
 While Factory-js does not have plugins for all ORMs, it likely has the capability to support almost all ORMs by allowing you to define factories yourself.
 
-### 📦 Setup
+### Setup
 
 1. Install the core package.
 
@@ -475,7 +402,7 @@ While Factory-js does not have plugins for all ORMs, it likely has the capabilit
 
 2. Define factories yourself following the [EXAMPLES.md](./EXAMPLES.md).
 
-## ✨ Contributing
+## Contributing
 
 Please make sure to read the [Contributing guide](./CONTRIBUTING.md) before making a pull request or a issue.  
 Contributions are welcome!

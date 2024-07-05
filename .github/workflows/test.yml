@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-22.04
     services:
       prisma_factory_db:
-        image: postgres:16.2
+        image: postgres:16.3
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -28,13 +28,13 @@ jobs:
           --health-retries 5
     steps:
       - name: Checkout
-        uses: actions/checkout@8e5e7e5ab8b370d6c329ec480221332ada57f0ab
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@a3252b78c470c02df07e9d59298aecedc3ccdd6d
+        uses: pnpm/action-setup@v4
 
       - name: Setup node.js
-        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
         with:
           node-version-file: ".nvmrc"
           cache: pnpm
@@ -50,14 +50,14 @@ jobs:
         run: pnpm run test:coverage
 
       - name: Upload factory coverage report
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
         with:
           files: ./packages/factory/coverage-final.json
           flags: factory
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload prisma-factory coverage report
-        uses: codecov/codecov-action@v4.0.1
+        uses: codecov/codecov-action@e28ff129e5465c2c0dcc6f003fc735cb6ae0c673 # v4.5.0
         with:
           files: ./packages/prisma-factory/coverage-final.json
           flags: prisma-factory
