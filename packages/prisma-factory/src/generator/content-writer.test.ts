@@ -18,13 +18,18 @@ describe("ContentWriter", () => {
       const { enums, models } = dmmf.datamodel;
       const value = removeIndents(
         await format(
-          new ContentWriter({ enums, models, randModule: "rands" }).write(),
+          new ContentWriter({
+            enums,
+            models,
+            randModule: "rands",
+            prismaClientModule: "example/path/to/prisma/client",
+          }).write(),
         ),
       );
       expect(value).toMatch(
         removeIndents(`
           import { factory } from "@factory-js/factory";
-          import type { Prisma, PrismaClient } from "@prisma/client";
+          import type { Prisma, PrismaClient } from "example/path/to/prisma/client";
           import { rands } from "rands";
         `),
       );
