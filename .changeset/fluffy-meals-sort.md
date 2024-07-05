@@ -1,5 +1,5 @@
 ---
-"@factory-js/prisma-factory": patch
+"@factory-js/prisma-factory": minor
 ---
 
 Add prismaClientModule option to config
