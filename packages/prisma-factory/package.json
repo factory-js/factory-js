@@ -62,13 +62,13 @@
     "@prisma/internals": "^5.9.1",
     "@prisma/client": "5.16.2",
     "@types/node": "18.19.39",
-    "@vitest/coverage-v8": "^1.0.0",
+    "@vitest/coverage-v8": "^2.0.0",
     "lint-staged": "^15.0.0",
     "prisma": "^5.5.2",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
     "typescript": "5.5.3",
-    "vitest": "^1.4.0"
+    "vitest": "^2.0.0"
   },
   "dependencies": {
     "@ngneat/falso": "^7.1.1",
