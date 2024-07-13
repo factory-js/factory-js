@@ -726,7 +726,7 @@ describe("#factory", () => {
   describe("when a factory has an unused var", () => {
     it("does not execute an unused var", async () => {
       const after = vi.fn();
-      const mock = vi.fn(() => "value");
+      const mock = vi.fn(() => "");
       await factory
         .define(
           {
@@ -734,12 +734,16 @@ describe("#factory", () => {
               name: later<string>(),
             },
             vars: {
-              unused: () => mock(),
+              unused1: () => mock(),
+              unused2: later<string>(),
               title: () => `Mr.`,
             },
           },
           (props) => ({ ...props, isSaved: true }),
         )
+        .vars({
+          unused2: ({ unused1 }) => unused1,
+        })
         .props({
           name: async ({ vars }) => `${await vars.title} John`,
         })
