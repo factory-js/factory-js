@@ -723,6 +723,35 @@ describe("#factory", () => {
     });
   });
 
+  describe("when a factory has an unused var", () => {
+    it("does not execute an unused var", async () => {
+      const after = vi.fn();
+      const mock = vi.fn(() => "value");
+      await factory
+        .define(
+          {
+            props: {
+              name: later<string>(),
+            },
+            vars: {
+              unused: () => mock(),
+              title: () => `Mr.`,
+            },
+          },
+          (props) => ({ ...props, isSaved: true }),
+        )
+        .props({
+          name: async ({ vars }) => `${await vars.title} John`,
+        })
+        .after((_, vars) => {
+          after(vars.title);
+        })
+        .create();
+      expect(after).toHaveBeenCalledWith("Mr.");
+      expect(mock).not.toHaveBeenCalled();
+    });
+  });
+
   describe("when a factory is extended", () => {
     it("can create an object", async () => {
       const { props, vars } = factory.define({
