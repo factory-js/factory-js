@@ -210,6 +210,7 @@ The common use case is creating 1:N or M:N objects.
 const userFactory = await factory
   .define({
     props: {
+      id: () => 1,
       firstName: () => "John",
       lastName: () => "Doe",
     },
