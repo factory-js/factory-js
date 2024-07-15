@@ -1,12 +1,12 @@
-# Contributing guide
+# Contributing Guide
 
-Thank you for your interest in contributing to factory-js.  
+Thank you for your interest in contributing to FactoryJS.  
 The goal of this library is to enable developers to save time and write tests more easily and readably.  
 Contributions are essential to achieving this goal, and we welcome contributions from everyone!
 
-## Where to contribute
+## Where to Contribute
 
-### Fixing bugs
+### Fixing Bugs
 
 We would appreciate it if you could report any bugs using [Issues](https://github.com/factory-js/factory-js/issues/new/choose).  
 If you believe you can fix the bug you found, we welcome you to submit a PR directly, no issue report required!  
@@ -14,8 +14,7 @@ Also, we would appreciate it if you could consider adding tests to prevent the b
 
 ### Documentation
 
-Improvements to the documentation are always welcome.  
-If you find a typo or believe our documentation can be improved, we would appreciate it if you could submit a PR.
+If you would like to improve or fix the documentation, please submit a PR to the [factory-js.github.io](https://github.com/factory-js/factory-js.github.io) repository.
 
 ### Refactoring
 
@@ -27,7 +26,7 @@ When refactoring code, please also consider adding new tests as needed to avoid 
 Adding new feature tend to be subjective and need some consideration.  
 If you'd like to propose a new feature, please let us know via an issue before submitting a PR!
 
-## How to contribute
+## How to Contribute
 
 1. Fork this repository from [GitHub link](https://github.com/factory-js/factory-js/fork) and clone it. [First Contributions](https://github.com/firstcontributions/first-contributions) would be helpful.
 
@@ -96,7 +95,7 @@ If you'd like to propose a new feature, please let us know via an issue before s
 
    When you bump the version, please refer to the following guide.
 
-   - `major`: This should never be used because factory-js is still < 1.0.0.
+   - `major`: This should never be used because FactoryJS is still < 1.0.0.
    - `minor`: Adding new features regardless of whether they introduce breaking changes.
    - `patch`: Fixing a bug and/or refactoring.
    - If the changes don't require a new release, such as documentation improvements, you can skip this step.
