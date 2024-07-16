@@ -1,5 +1,11 @@
 # @factory-js/factory
 
+## 0.4.0
+
+### Minor Changes
+
+- f0dbfb3: feat: add the seq function
+
 ## 0.3.0
 
 ### Minor Changes
