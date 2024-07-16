@@ -1,6 +1,6 @@
 import { expect, it, describe, expectTypeOf, vi } from "vitest";
 import { factory } from "./factory";
-import { later } from ".";
+import { later, seq } from ".";
 
 describe("#factory", () => {
   describe("when a factory has props", () => {
@@ -270,11 +270,10 @@ describe("#factory", () => {
 
   describe("when a prop is called from other props multiple times", () => {
     it("memos a value and returns the same value", async () => {
-      let count = 1;
       const user = await factory
         .define({
           props: {
-            id: () => count++,
+            id: seq(1, (n) => n),
             cardId: later<string>(),
             roomId: later<string>(),
             employeeId: later<string>(),
@@ -305,7 +304,6 @@ describe("#factory", () => {
 
   describe("when a var is called from other vars and props multiple times", () => {
     it("memos a value and returns the same value", async () => {
-      let count = 1;
       const user = await factory
         .define({
           props: {
@@ -315,7 +313,7 @@ describe("#factory", () => {
             employeeId: later<string>(),
           },
           vars: {
-            id: () => count++,
+            id: seq(1, (n) => n),
             cardId: later<string>(),
             roomId: later<string>(),
             employeeId: later<string>(),
@@ -388,7 +386,7 @@ describe("#factory", () => {
               role: () => "admin",
             },
             after: (user, vars) => {
-              after({ user, role: vars.role });
+              after({ user, vars });
             },
           }),
         })
@@ -407,13 +405,136 @@ describe("#factory", () => {
           isAdmin: true,
           isSaved: true,
         },
-        role: "admin",
+        vars: {
+          role: "admin",
+        },
       });
       expectTypeOf(user).toEqualTypeOf<{
         name: string;
         isAdmin: boolean;
         isSaved: boolean;
       }>();
+    });
+  });
+
+  describe("when a factory uses a seq in a trait", () => {
+    it("can build an object with a trait", async () => {
+      const after = vi.fn();
+      const user = await factory
+        .define(
+          {
+            props: {
+              key: later<string>(),
+              name: later<string>(),
+            },
+            vars: {
+              id: later<number>(),
+            },
+          },
+          (props) => ({ ...props, isSaved: true }),
+        )
+        .traits({
+          admin: (name: string) => ({
+            props: {
+              key: async ({ vars }) => `user:${(await vars.id).toString()}`,
+              name: seq(1, (n) => `${name}-${n.toString()}`),
+            },
+            vars: {
+              id: seq(1, (n) => n),
+            },
+            after: (user, vars) => {
+              after({ user, vars });
+            },
+          }),
+        })
+        .use((t) => t.admin("Tom"))
+        .createList(2);
+      expect(user).toStrictEqual([
+        {
+          key: "user:1",
+          name: "Tom-1",
+          isSaved: true,
+        },
+        {
+          key: "user:2",
+          name: "Tom-2",
+          isSaved: true,
+        },
+      ]);
+      expect(after).toHaveBeenNthCalledWith(1, {
+        user: {
+          key: "user:1",
+          name: "Tom-1",
+          isSaved: true,
+        },
+        vars: {
+          id: 1,
+        },
+      });
+      expect(after).toHaveBeenNthCalledWith(2, {
+        user: {
+          key: "user:2",
+          name: "Tom-2",
+          isSaved: true,
+        },
+        vars: {
+          id: 2,
+        },
+      });
+      expectTypeOf(user).toEqualTypeOf<
+        {
+          key: string;
+          name: string;
+          isSaved: boolean;
+        }[]
+      >();
+    });
+  });
+
+  describe("When a factory uses a seq with dependent props and vars", () => {
+    it("can build an object with seq", async () => {
+      const user = await factory
+        .define(
+          {
+            props: {
+              key: later<string>(),
+              name: () => "John",
+            },
+            vars: {
+              role: () => "guest",
+            },
+          },
+          (props) => ({ ...props, isSaved: true }),
+        )
+        .props({
+          key: seq(
+            1,
+            async (n, { props, vars }) =>
+              `${await props.name}:${await vars.role}:${n.toString()}`,
+          ),
+        })
+        .props({ name: () => "Tom" })
+        .vars({ role: () => "admin" })
+        .createList(2);
+      expect(user).toStrictEqual([
+        {
+          key: "Tom:admin:1",
+          name: "Tom",
+          isSaved: true,
+        },
+        {
+          key: "Tom:admin:2",
+          name: "Tom",
+          isSaved: true,
+        },
+      ]);
+      expectTypeOf(user).toEqualTypeOf<
+        {
+          key: string;
+          name: string;
+          isSaved: boolean;
+        }[]
+      >();
     });
   });
 
@@ -667,7 +788,6 @@ describe("#factory", () => {
 
   describe("when a factory has the after hooks", () => {
     it("calls the after hooks after creating an object", async () => {
-      let count = 1;
       const afterHooks = [vi.fn(), vi.fn()] as const;
       await factory
         .define(
@@ -676,7 +796,7 @@ describe("#factory", () => {
               name: () => "John",
             },
             vars: {
-              id: () => count++,
+              id: seq(1, (n) => n),
             },
           },
           (props) => ({ ...props, isSaved: true }),
@@ -760,6 +880,7 @@ describe("#factory", () => {
     it("can create an object", async () => {
       const { props, vars } = factory.define({
         props: {
+          id: seq(1, (n) => n),
           name: () => "John",
           unusedProp: () => "",
         },
@@ -772,6 +893,7 @@ describe("#factory", () => {
         .define(
           {
             props: {
+              id: props.id,
               name: props.name,
               isAdmin: () => false,
               canRead: later<boolean>(),
@@ -790,12 +912,14 @@ describe("#factory", () => {
         })
         .create();
       expect(employee).toStrictEqual({
+        id: 1,
         name: "John",
         isSaved: true,
         isAdmin: true,
         canRead: true,
       });
       expectTypeOf(employee).toEqualTypeOf<{
+        id: number;
         name: string;
         isSaved: boolean;
         isAdmin: boolean;
@@ -863,17 +987,16 @@ describe("#factory", () => {
 
   describe("when a factory has 1:1 relation", () => {
     it("can build objects", async () => {
-      let count = 1;
       const profileFactory = factory.define({
         props: {
-          id: () => count++,
+          id: seq(1, (n) => n),
         },
         vars: {},
       });
       const userFactory = factory
         .define({
           props: {
-            id: () => count++,
+            id: seq(1, (n) => n),
             profileId: later<number>(),
           },
           vars: {
@@ -886,7 +1009,7 @@ describe("#factory", () => {
       const user = await userFactory.build();
       expect(user).toStrictEqual({
         id: 1,
-        profileId: 2,
+        profileId: 1,
       });
       expectTypeOf(user).toEqualTypeOf<{
         id: number;
@@ -897,17 +1020,16 @@ describe("#factory", () => {
 
   describe("when a factory has 1:N relation", () => {
     it("can build objects", async () => {
-      let count = 1;
       const userFactory = factory.define({
         props: {
-          id: () => count++,
+          id: seq(1, (n) => n),
         },
         vars: {},
       });
       const postFactory = factory
         .define({
           props: {
-            id: () => count++,
+            id: seq(1, (n) => n),
             authorId: later<number>(),
           },
           vars: {
@@ -929,16 +1051,15 @@ describe("#factory", () => {
 
   describe("when a factory has the M:N relation", () => {
     it("can build objects", async () => {
-      let count = 1;
       const reviewerFactory = factory.define({
         props: {
-          id: () => count++,
+          id: seq(1, (n) => n),
         },
         vars: {},
       });
       const postFactory = factory.define({
         props: {
-          id: () => count++,
+          id: seq(1, (n) => n),
         },
         vars: {},
       });
@@ -962,8 +1083,8 @@ describe("#factory", () => {
         .vars({ post: () => post })
         .buildList(2);
       expect(reviewerToUser).toStrictEqual([
+        { postId: 1, reviewerId: 1 },
         { postId: 1, reviewerId: 2 },
-        { postId: 1, reviewerId: 3 },
       ]);
       expectTypeOf(reviewerToUser).toEqualTypeOf<
         {
@@ -976,12 +1097,11 @@ describe("#factory", () => {
 
   describe("when a factory has the self relation", () => {
     it("can build objects", async () => {
-      let count = 1;
       type User = { id: number; teacherId: number | undefined };
       const userFactory = factory
         .define({
           props: {
-            id: () => count++,
+            id: seq(1, (n) => n),
             teacherId: later<number | undefined>(),
           },
           vars: {
