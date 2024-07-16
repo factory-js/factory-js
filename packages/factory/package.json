@@ -1,6 +1,6 @@
 {
   "name": "@factory-js/factory",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": false,
   "author": "Tomoyuki Kai <ktmouk@gmail.com>",
   "description": "🏭 The object generator for testing",
