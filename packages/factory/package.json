@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "private": false,
   "author": "Tomoyuki Kai <ktmouk@gmail.com>",
-  "description": "🏭 The ORM-agnostic object generator for testing",
+  "description": "🏭 The object generator for testing",
   "license": "MIT",
   "keywords": [
     "typescript",

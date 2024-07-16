@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": false,
   "author": "Tomoyuki Kai <ktmouk@gmail.com>",
-  "description": "🏭 The factory-js plugin for Prisma",
+  "description": "🏭 The FactoryJS plugin for Prisma",
   "license": "MIT",
   "keywords": [
     "typescript",
