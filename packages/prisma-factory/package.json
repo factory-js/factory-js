@@ -60,8 +60,8 @@
   "devDependencies": {
     "@factory-js/factory": "workspace:*",
     "@prisma/internals": "^5.9.1",
-    "@prisma/client": "5.16.2",
-    "@types/node": "18.19.39",
+    "@prisma/client": "5.17.0",
+    "@types/node": "18.19.41",
     "@vitest/coverage-v8": "^2.0.0",
     "lint-staged": "^15.0.0",
     "prisma": "^5.5.2",
