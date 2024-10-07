@@ -11,10 +11,10 @@ permissions:
 jobs:
   run-test:
     timeout-minutes: 10
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     services:
       prisma_factory_db:
-        image: postgres:16.4
+        image: postgres:17.0
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
