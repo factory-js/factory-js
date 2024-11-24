@@ -61,13 +61,13 @@
     "@factory-js/factory": "workspace:*",
     "@prisma/internals": "^5.9.1",
     "@prisma/client": "5.22.0",
-    "@types/node": "18.19.64",
+    "@types/node": "18.19.65",
     "@vitest/coverage-v8": "^2.0.0",
     "lint-staged": "^15.0.0",
     "prisma": "^5.5.2",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
-    "typescript": "5.6.3",
+    "typescript": "5.7.2",
     "vitest": "^2.0.0"
   },
   "dependencies": {
