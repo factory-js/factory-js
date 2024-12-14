@@ -113,7 +113,7 @@ importers:
         version: 7.2.0
       '@prisma/generator-helper':
         specifier: ^6.0.0
-        version: 6.0.0
+        version: 6.0.1
       decimal.js:
         specifier: ^10.4.3
         version: 10.4.3
@@ -1089,9 +1089,6 @@ packages:
       prisma:
         optional: true
 
-  '@prisma/debug@6.0.0':
-    resolution: {integrity: sha512-eUjoNThlDXdyJ1iQ2d7U6aTVwm59EwvODb5zFVNJEokNoSiQmiYWNzZIwZyDmZ+j51j42/0iTaHIJ4/aZPKFRg==}
-
   '@prisma/debug@6.0.1':
     resolution: {integrity: sha512-jQylgSOf7ibTVxqBacnAlVGvek6fQxJIYCQOeX2KexsfypNzXjJQSS2o5s+Mjj2Np93iSOQUaw6TvPj8syhG4w==}
 
@@ -1103,9 +1100,6 @@ packages:
 
   '@prisma/fetch-engine@6.0.1':
     resolution: {integrity: sha512-T36bWFVGeGYYSyYOj9d+O9G3sBC+pAyMC+jc45iSL63/Haq1GrYjQPgPMxrEj9m739taXrupoysRedQ+VyvM/Q==}
-
-  '@prisma/generator-helper@6.0.0':
-    resolution: {integrity: sha512-5DkG7hspZo6U4OtqI2W0JcgtY37sr7HgT8Q0W/sjL4VoV4px6ivzK6Eif5bKM7q+S4yFUHtjUt/3s69ErfLn7A==}
 
   '@prisma/generator-helper@6.0.1':
     resolution: {integrity: sha512-Qhli2Rtr0fyRcI490oLgSVlUSXp3cdbnL/yqrnChYyziourszWqqw7U5IEoOsvyWJ9iaOupduf9Sde7knUEA/Q==}
@@ -4626,8 +4620,6 @@ snapshots:
     optionalDependencies:
       prisma: 6.0.1
 
-  '@prisma/debug@6.0.0': {}
-
   '@prisma/debug@6.0.1': {}
 
   '@prisma/engines-version@5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e': {}
@@ -4644,10 +4636,6 @@ snapshots:
       '@prisma/debug': 6.0.1
       '@prisma/engines-version': 5.23.0-27.5dbef10bdbfb579e07d35cc85fb1518d357cb99e
       '@prisma/get-platform': 6.0.1
-
-  '@prisma/generator-helper@6.0.0':
-    dependencies:
-      '@prisma/debug': 6.0.0
 
   '@prisma/generator-helper@6.0.1':
     dependencies:
