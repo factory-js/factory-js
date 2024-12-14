@@ -61,7 +61,7 @@ export class FactoryWriter {
     return (field.relationFromFields ?? [])
       .map((fieldName, index) => {
         const relationToField = field.relationToFields?.[index] ?? "";
-        return `${fieldName}: async ({ vars }) => (await vars.${field.name})${field.isRequired ? "" : "?"}.${relationToField}`;
+        return `${fieldName}: async ({ vars }) => (await vars.${field.name})${field.isRequired ? "" : "?"}.${relationToField}${!field.isRequired ? " ?? null" : ""}`;
       })
       .join(",");
   }

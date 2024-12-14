@@ -151,7 +151,7 @@ describe("FactoryWriter", () => {
       );
       expect(value).toMatch(
         removeIndents(
-          ".props({ userId: async ({ vars }) => (await vars.user)?.id })",
+          ".props({ userId: async ({ vars }) => (await vars.user)?.id ?? null })",
         ),
       );
     });
