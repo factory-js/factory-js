@@ -1,5 +1,11 @@
 # @factory-js/prisma-factory
 
+## 0.2.1
+
+### Patch Changes
+
+- 858af5a: fix: support the strictUndefinedChecks option
+
 ## 0.2.0
 
 ### Minor Changes
