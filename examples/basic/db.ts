@@ -7,7 +7,7 @@ export type Database = ReturnType<typeof createDrizzle>["db"];
 const createDrizzle = () => {
   const client = new Database("test.db");
   const db = drizzle(client, { schema });
-  const disconnect = () => client.close();
+  const disconnect: () => Database.Database = () => client.close();
   return { db, disconnect };
 };
 
