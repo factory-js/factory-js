@@ -34,7 +34,7 @@ jobs:
         uses: pnpm/action-setup@v4
 
       - name: Setup node.js
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
+        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
         with:
           node-version-file: ".nvmrc"
           cache: pnpm
@@ -50,14 +50,14 @@ jobs:
         run: pnpm run test:coverage
 
       - name: Upload factory coverage report
-        uses: codecov/codecov-action@1e68e06f1dbfde0e4cefc87efeba9e4643565303 # v5.1.2
+        uses: codecov/codecov-action@13ce06bfc6bbe3ecf90edbbf1bc32fe5978ca1d3 # v5.3.1
         with:
           files: ./packages/factory/coverage-final.json
           flags: factory
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload prisma-factory coverage report
-        uses: codecov/codecov-action@1e68e06f1dbfde0e4cefc87efeba9e4643565303 # v5.1.2
+        uses: codecov/codecov-action@13ce06bfc6bbe3ecf90edbbf1bc32fe5978ca1d3 # v5.3.1
         with:
           files: ./packages/prisma-factory/coverage-final.json
           flags: prisma-factory
