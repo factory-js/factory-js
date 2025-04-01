@@ -92,7 +92,7 @@ importers:
         version: 13.3.0(enquirer@2.4.1)
       typescript:
         specifier: 5.2.2
-        version: 5.8.2
+        version: 5.2.2
       vitest:
         specifier: ^1.4.0
         version: 1.6.0(@types/node@18.19.69)
@@ -107,10 +107,10 @@ importers:
         version: 15.4.3
       tsup:
         specifier: ^8.0.2
-        version: 8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.8.2)(yaml@2.7.0)
+        version: 8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.3)(yaml@2.7.0)
       typescript:
         specifier: 5.7.3
-        version: 5.8.2
+        version: 5.7.3
       vitest:
         specifier: ^2.0.0
         version: 2.1.8(@types/node@18.19.69)
@@ -153,13 +153,13 @@ importers:
         version: 6.1.0
       tsup:
         specifier: ^8.0.2
-        version: 8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.8.2)(yaml@2.7.0)
+        version: 8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.7.0)
       tsx:
         specifier: ^4.7.1
         version: 4.19.2
       typescript:
         specifier: 5.7.2
-        version: 5.8.2
+        version: 5.7.2
       vitest:
         specifier: ^2.0.0
         version: 2.1.8(@types/node@18.19.69)
@@ -3730,6 +3730,21 @@ packages:
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <5.9.0'
+
+  typescript@5.2.2:
+    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@5.7.2:
+    resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@5.7.3:
+    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
 
   typescript@5.8.2:
     resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
@@ -7385,7 +7400,7 @@ snapshots:
       minimist: 1.2.8
       strip-bom: 3.0.0
 
-  tsup@8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.8.2)(yaml@2.7.0):
+  tsup@8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.7.0):
     dependencies:
       bundle-require: 5.0.0(esbuild@0.24.0)
       cac: 6.7.14
@@ -7405,7 +7420,34 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.4.49
-      typescript: 5.8.2
+      typescript: 5.7.2
+    transitivePeerDependencies:
+      - jiti
+      - supports-color
+      - tsx
+      - yaml
+
+  tsup@8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.3)(yaml@2.7.0):
+    dependencies:
+      bundle-require: 5.0.0(esbuild@0.24.0)
+      cac: 6.7.14
+      chokidar: 4.0.1
+      consola: 3.2.3
+      debug: 4.3.7
+      esbuild: 0.24.0
+      joycon: 3.1.1
+      picocolors: 1.1.1
+      postcss-load-config: 6.0.1(postcss@8.4.49)(tsx@4.19.2)(yaml@2.7.0)
+      resolve-from: 5.0.0
+      rollup: 4.24.2
+      source-map: 0.8.0-beta.0
+      sucrase: 3.35.0
+      tinyexec: 0.3.1
+      tinyglobby: 0.2.10
+      tree-kill: 1.2.2
+    optionalDependencies:
+      postcss: 8.4.49
+      typescript: 5.7.3
     transitivePeerDependencies:
       - jiti
       - supports-color
@@ -7507,6 +7549,12 @@ snapshots:
       typescript: 5.8.2
     transitivePeerDependencies:
       - supports-color
+
+  typescript@5.2.2: {}
+
+  typescript@5.7.2: {}
+
+  typescript@5.7.3: {}
 
   typescript@5.8.2: {}
 
