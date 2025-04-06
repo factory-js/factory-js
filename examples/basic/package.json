@@ -11,17 +11,17 @@
     "clean": "rm -rf node_modules .turbo test.db"
   },
   "devDependencies": {
+    "@factory-js/factory": "workspace:*",
     "@faker-js/faker": "^8.4.1",
     "@types/better-sqlite3": "^7.6.9",
-    "@factory-js/factory": "workspace:*",
-    "@vitest/coverage-v8": "^0.34.4",
+    "@vitest/coverage-v8": "^3.1.1",
     "drizzle-kit": "^0.20.13",
     "lint-staged": "^13.2.1",
     "typescript": "5.2.2",
-    "vitest": "^1.4.0"
+    "vitest": "^3.1.1"
   },
   "dependencies": {
-    "drizzle-orm": "^0.29.3",
-    "better-sqlite3": "^11.7.0"
+    "better-sqlite3": "^11.7.0",
+    "drizzle-orm": "^0.29.3"
   }
 }
