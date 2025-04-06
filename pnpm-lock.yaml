@@ -83,7 +83,7 @@ importers:
         version: 7.6.11
       '@vitest/coverage-v8':
         specifier: ^0.34.4
-        version: 0.34.6(vitest@1.6.0(@types/node@18.19.69))
+        version: 0.34.6(vitest@1.6.0(@types/node@18.19.86))
       drizzle-kit:
         specifier: ^0.20.13
         version: 0.20.18
@@ -95,13 +95,13 @@ importers:
         version: 5.2.2
       vitest:
         specifier: ^1.4.0
-        version: 1.6.0(@types/node@18.19.69)
+        version: 1.6.0(@types/node@18.19.86)
 
   packages/factory:
     devDependencies:
       '@vitest/coverage-v8':
         specifier: ^2.0.0
-        version: 2.1.8(vitest@2.1.8(@types/node@18.19.69))
+        version: 2.1.8(vitest@2.1.8(@types/node@18.19.86))
       lint-staged:
         specifier: ^15.0.0
         version: 15.4.3
@@ -113,7 +113,7 @@ importers:
         version: 5.8.3
       vitest:
         specifier: ^2.0.0
-        version: 2.1.8(@types/node@18.19.69)
+        version: 2.1.8(@types/node@18.19.86)
 
   packages/prisma-factory:
     dependencies:
@@ -134,17 +134,17 @@ importers:
         specifier: workspace:*
         version: link:../factory
       '@prisma/client':
-        specifier: 6.1.0
-        version: 6.1.0(prisma@6.1.0)
+        specifier: 6.5.0
+        version: 6.5.0(prisma@6.1.0)(typescript@5.8.3)
       '@prisma/internals':
         specifier: ^6.0.0
         version: 6.1.0
       '@types/node':
-        specifier: 18.19.69
-        version: 18.19.69
+        specifier: 18.19.86
+        version: 18.19.86
       '@vitest/coverage-v8':
         specifier: ^2.0.0
-        version: 2.1.8(vitest@2.1.8(@types/node@18.19.69))
+        version: 2.1.8(vitest@2.1.8(@types/node@18.19.86))
       lint-staged:
         specifier: ^15.0.0
         version: 15.4.3
@@ -153,16 +153,16 @@ importers:
         version: 6.1.0
       tsup:
         specifier: ^8.0.2
-        version: 8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.7.1)
+        version: 8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.8.3)(yaml@2.7.1)
       tsx:
         specifier: ^4.7.1
         version: 4.19.2
       typescript:
-        specifier: 5.7.2
-        version: 5.7.2
+        specifier: 5.8.3
+        version: 5.8.3
       vitest:
         specifier: ^2.0.0
-        version: 2.1.8(@types/node@18.19.69)
+        version: 2.1.8(@types/node@18.19.86)
 
 packages:
 
@@ -1102,13 +1102,16 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@prisma/client@6.1.0':
-    resolution: {integrity: sha512-AbQYc5+EJKm1Ydfq3KxwcGiy7wIbm4/QbjCKWWoNROtvy7d6a3gmAGkKjK0iUCzh+rHV8xDhD5Cge8ke/kiy5Q==}
+  '@prisma/client@6.5.0':
+    resolution: {integrity: sha512-M6w1Ql/BeiGoZmhMdAZUXHu5sz5HubyVcKukbLs3l0ELcQb8hTUJxtGEChhv4SVJ0QJlwtLnwOLgIRQhpsm9dw==}
     engines: {node: '>=18.18'}
     peerDependencies:
       prisma: '*'
+      typescript: '>=5.1.0'
     peerDependenciesMeta:
       prisma:
+        optional: true
+      typescript:
         optional: true
 
   '@prisma/debug@6.1.0':
@@ -1411,8 +1414,8 @@ packages:
   '@types/node@18.19.54':
     resolution: {integrity: sha512-+BRgt0G5gYjTvdLac9sIeE0iZcJxi4Jc4PV5EUzqi+88jmQLr+fRZdv2tCTV7IHKSGxM6SaLoOXQWWUiLUItMw==}
 
-  '@types/node@18.19.69':
-    resolution: {integrity: sha512-ECPdY1nlaiO/Y6GUnwgtAAhLNaQ53AyIVz+eILxpEo5OvuqE6yWkqWBIb5dU0DqhKQtMeny+FBD3PK6lm7L5xQ==}
+  '@types/node@18.19.86':
+    resolution: {integrity: sha512-fifKayi175wLyKyc5qUfyENhQ1dCNI1UNjp653d8kuYcPQN5JhX3dGuP/XmvPTg/xRBn1VTLpbmi+H/Mr7tLfQ==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -3741,11 +3744,6 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  typescript@5.7.2:
-    resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
   typescript@5.8.2:
     resolution: {integrity: sha512-aJn6wq13/afZp/jT9QZmwEjDqqvSGp1VT5GVg+f/t6/oVyrgXM6BY1h9BRh/O5p3PlUPAe+WuiEZOmb/49RqoQ==}
     engines: {node: '>=14.17'}
@@ -4652,9 +4650,10 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@prisma/client@6.1.0(prisma@6.1.0)':
+  '@prisma/client@6.5.0(prisma@6.1.0)(typescript@5.8.3)':
     optionalDependencies:
       prisma: 6.1.0
+      typescript: 5.8.3
 
   '@prisma/debug@6.1.0': {}
 
@@ -4937,7 +4936,7 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
-  '@types/node@18.19.69':
+  '@types/node@18.19.86':
     dependencies:
       undici-types: 5.26.5
 
@@ -5020,7 +5019,7 @@ snapshots:
       '@typescript-eslint/types': 8.26.0
       eslint-visitor-keys: 4.2.0
 
-  '@vitest/coverage-v8@0.34.6(vitest@1.6.0(@types/node@18.19.69))':
+  '@vitest/coverage-v8@0.34.6(vitest@1.6.0(@types/node@18.19.86))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -5033,11 +5032,11 @@ snapshots:
       std-env: 3.8.0
       test-exclude: 6.0.0
       v8-to-istanbul: 9.3.0
-      vitest: 1.6.0(@types/node@18.19.69)
+      vitest: 1.6.0(@types/node@18.19.86)
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/coverage-v8@2.1.8(vitest@2.1.8(@types/node@18.19.69))':
+  '@vitest/coverage-v8@2.1.8(vitest@2.1.8(@types/node@18.19.86))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -5051,7 +5050,7 @@ snapshots:
       std-env: 3.8.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.1.8(@types/node@18.19.69)
+      vitest: 2.1.8(@types/node@18.19.86)
     transitivePeerDependencies:
       - supports-color
 
@@ -5068,13 +5067,13 @@ snapshots:
       chai: 5.1.2
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.8(vite@5.4.11(@types/node@18.19.69))':
+  '@vitest/mocker@2.1.8(vite@5.4.11(@types/node@18.19.86))':
     dependencies:
       '@vitest/spy': 2.1.8
       estree-walker: 3.0.3
       magic-string: 0.30.14
     optionalDependencies:
-      vite: 5.4.11(@types/node@18.19.69)
+      vite: 5.4.11(@types/node@18.19.86)
 
   '@vitest/pretty-format@2.1.8':
     dependencies:
@@ -7425,33 +7424,6 @@ snapshots:
       minimist: 1.2.8
       strip-bom: 3.0.0
 
-  tsup@8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)(yaml@2.7.1):
-    dependencies:
-      bundle-require: 5.0.0(esbuild@0.24.0)
-      cac: 6.7.14
-      chokidar: 4.0.1
-      consola: 3.2.3
-      debug: 4.3.7
-      esbuild: 0.24.0
-      joycon: 3.1.1
-      picocolors: 1.1.1
-      postcss-load-config: 6.0.1(postcss@8.4.49)(tsx@4.19.2)(yaml@2.7.1)
-      resolve-from: 5.0.0
-      rollup: 4.24.2
-      source-map: 0.8.0-beta.0
-      sucrase: 3.35.0
-      tinyexec: 0.3.1
-      tinyglobby: 0.2.10
-      tree-kill: 1.2.2
-    optionalDependencies:
-      postcss: 8.4.49
-      typescript: 5.7.2
-    transitivePeerDependencies:
-      - jiti
-      - supports-color
-      - tsx
-      - yaml
-
   tsup@8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.8.3)(yaml@2.7.1):
     dependencies:
       bundle-require: 5.0.0(esbuild@0.24.0)
@@ -7577,8 +7549,6 @@ snapshots:
 
   typescript@5.2.2: {}
 
-  typescript@5.7.2: {}
-
   typescript@5.8.2: {}
 
   typescript@5.8.3: {}
@@ -7619,13 +7589,13 @@ snapshots:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
-  vite-node@1.6.0(@types/node@18.19.69):
+  vite-node@1.6.0(@types/node@18.19.86):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0
       pathe: 1.1.2
       picocolors: 1.1.1
-      vite: 5.4.11(@types/node@18.19.69)
+      vite: 5.4.11(@types/node@18.19.86)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -7637,13 +7607,13 @@ snapshots:
       - supports-color
       - terser
 
-  vite-node@2.1.8(@types/node@18.19.69):
+  vite-node@2.1.8(@types/node@18.19.86):
     dependencies:
       cac: 6.7.14
       debug: 4.3.7
       es-module-lexer: 1.5.4
       pathe: 1.1.2
-      vite: 5.4.11(@types/node@18.19.69)
+      vite: 5.4.11(@types/node@18.19.86)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -7655,16 +7625,16 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.4.11(@types/node@18.19.69):
+  vite@5.4.11(@types/node@18.19.86):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.49
       rollup: 4.28.0
     optionalDependencies:
-      '@types/node': 18.19.69
+      '@types/node': 18.19.86
       fsevents: 2.3.3
 
-  vitest@1.6.0(@types/node@18.19.69):
+  vitest@1.6.0(@types/node@18.19.86):
     dependencies:
       '@vitest/expect': 1.6.0
       '@vitest/runner': 1.6.0
@@ -7683,11 +7653,11 @@ snapshots:
       strip-literal: 2.1.1
       tinybench: 2.9.0
       tinypool: 0.8.4
-      vite: 5.4.11(@types/node@18.19.69)
-      vite-node: 1.6.0(@types/node@18.19.69)
+      vite: 5.4.11(@types/node@18.19.86)
+      vite-node: 1.6.0(@types/node@18.19.86)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 18.19.69
+      '@types/node': 18.19.86
     transitivePeerDependencies:
       - less
       - lightningcss
@@ -7698,10 +7668,10 @@ snapshots:
       - supports-color
       - terser
 
-  vitest@2.1.8(@types/node@18.19.69):
+  vitest@2.1.8(@types/node@18.19.86):
     dependencies:
       '@vitest/expect': 2.1.8
-      '@vitest/mocker': 2.1.8(vite@5.4.11(@types/node@18.19.69))
+      '@vitest/mocker': 2.1.8(vite@5.4.11(@types/node@18.19.86))
       '@vitest/pretty-format': 2.1.8
       '@vitest/runner': 2.1.8
       '@vitest/snapshot': 2.1.8
@@ -7717,11 +7687,11 @@ snapshots:
       tinyexec: 0.3.1
       tinypool: 1.0.2
       tinyrainbow: 1.2.0
-      vite: 5.4.11(@types/node@18.19.69)
-      vite-node: 2.1.8(@types/node@18.19.69)
+      vite: 5.4.11(@types/node@18.19.86)
+      vite-node: 2.1.8(@types/node@18.19.86)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 18.19.69
+      '@types/node': 18.19.86
     transitivePeerDependencies:
       - less
       - lightningcss

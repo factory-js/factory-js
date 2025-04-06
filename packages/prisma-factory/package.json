@@ -60,14 +60,14 @@
   "devDependencies": {
     "@factory-js/factory": "workspace:*",
     "@prisma/internals": "^6.0.0",
-    "@prisma/client": "6.1.0",
-    "@types/node": "18.19.69",
+    "@prisma/client": "6.5.0",
+    "@types/node": "18.19.86",
     "@vitest/coverage-v8": "^2.0.0",
     "lint-staged": "^15.0.0",
     "prisma": "^6.0.0",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
-    "typescript": "5.7.2",
+    "typescript": "5.8.3",
     "vitest": "^2.0.0"
   },
   "dependencies": {
