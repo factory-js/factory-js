@@ -118,8 +118,8 @@ importers:
   packages/prisma-factory:
     dependencies:
       '@ngneat/falso':
-        specifier: ^7.1.1
-        version: 7.3.0
+        specifier: ^8.0.0
+        version: 8.0.1
       '@prisma/generator-helper':
         specifier: ^6.0.0
         version: 6.4.1
@@ -1104,8 +1104,8 @@ packages:
   '@napi-rs/wasm-runtime@0.2.10':
     resolution: {integrity: sha512-bCsCyeZEwVErsGmyPNSzwfwFn4OdxBj0mmv6hOFucB/k81Ojdu68RbZdxYsRQUPc9l6SU5F/cG+bXgWs3oUgsQ==}
 
-  '@ngneat/falso@7.3.0':
-    resolution: {integrity: sha512-JDjy2D+fLMAIl0x9i9B9DCsmrr9UcqjLoAbjf+xKdXOkSyoU8t2DKi84Jvn9Uwj9lX02dsHAQuq3JZDUiqn22w==}
+  '@ngneat/falso@8.0.1':
+    resolution: {integrity: sha512-C6NHC+4LaxIwJ4ARO/03ckBjt7eZB45Enj2EN5FtDYezZ6tDfvH1rIQ3P4hwWZlQpcMTRPKwBEXi3NCTyUV/zw==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -4632,7 +4632,7 @@ snapshots:
       '@tybys/wasm-util': 0.9.0
     optional: true
 
-  '@ngneat/falso@7.3.0':
+  '@ngneat/falso@8.0.1':
     dependencies:
       seedrandom: 3.0.5
       uuid: 8.3.2
