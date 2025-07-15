@@ -71,7 +71,7 @@
     "vitest": "^3.1.1"
   },
   "dependencies": {
-    "@ngneat/falso": "^7.1.1",
+    "@ngneat/falso": "^8.0.0",
     "@prisma/generator-helper": "^6.0.0",
     "decimal.js": "^10.4.3",
     "prettier": "^3.2.5"
