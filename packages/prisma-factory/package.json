@@ -54,9 +54,6 @@
     "test:coverage": "vitest run --coverage",
     "clean": "rm -rf node_modules .turbo dist e2e/generated"
   },
-  "prisma": {
-    "schema": "e2e/schema.prisma"
-  },
   "devDependencies": {
     "@factory-js/factory": "workspace:*",
     "@prisma/client": "6.13.0",
