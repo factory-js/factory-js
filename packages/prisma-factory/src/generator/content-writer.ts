@@ -1,10 +1,13 @@
-import type { DMMF } from "@prisma/generator-helper";
+import type { GeneratorOptions } from "@prisma/generator-helper";
 import { EnumWriter } from "./enum-writer";
 import { FactoryWriter } from "./factory-writer";
 
+type Enums = GeneratorOptions["dmmf"]["datamodel"]["enums"];
+type Models = GeneratorOptions["dmmf"]["datamodel"]["models"];
+
 export class ContentWriter {
-  readonly #enums: DMMF.DatamodelEnum[];
-  readonly #models: DMMF.Model[];
+  readonly #enums: Enums;
+  readonly #models: Models;
   readonly #randModule: string;
   readonly #prismaClientModule: string;
 
@@ -14,8 +17,8 @@ export class ContentWriter {
     randModule,
     prismaClientModule,
   }: {
-    enums: DMMF.DatamodelEnum[];
-    models: DMMF.Model[];
+    enums: Enums;
+    models: Models;
     randModule: string;
     prismaClientModule: string;
   }) {
