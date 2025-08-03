@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { db } from "../db";
 import {
   defineProfileFactory,
   defineSessionFactory,
   defineUserFactory,
-} from "../generated/factories";
+} from "../../generated/factories";
+import { db } from "../db";
 
 describe("OneToOne", () => {
   describe("when a schema has a one-to-one relation", () => {

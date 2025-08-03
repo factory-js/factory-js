@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { db } from "../db";
 import {
   defineCategoriesOnPostsFactory,
   definePostFactory,
-} from "../generated/factories";
+} from "../../generated/factories";
+import { db } from "../db";
 
 describe("ManyToMany", () => {
   describe("when a schema has a many-to-many relation", () => {
