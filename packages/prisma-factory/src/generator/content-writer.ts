@@ -1,10 +1,10 @@
-import type { DMMF, ReadonlyDeep } from "@prisma/generator-helper";
+import type { DMMF } from "@prisma/generator-helper";
 import { EnumWriter } from "./enum-writer";
 import { FactoryWriter } from "./factory-writer";
 
 export class ContentWriter {
-  readonly #enums: ReadonlyDeep<DMMF.DatamodelEnum[]>;
-  readonly #models: ReadonlyDeep<DMMF.Model[]>;
+  readonly #enums: DMMF.DatamodelEnum[];
+  readonly #models: DMMF.Model[];
   readonly #randModule: string;
   readonly #prismaClientModule: string;
 
@@ -14,8 +14,8 @@ export class ContentWriter {
     randModule,
     prismaClientModule,
   }: {
-    enums: ReadonlyDeep<DMMF.DatamodelEnum[]>;
-    models: ReadonlyDeep<DMMF.Model[]>;
+    enums: DMMF.DatamodelEnum[];
+    models: DMMF.Model[];
     randModule: string;
     prismaClientModule: string;
   }) {
