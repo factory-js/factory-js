@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { defineFolderFactory } from "../../generated/factories";
 import { db } from "../db";
-import { defineFolderFactory } from "../generated/factories";
 
 describe("SelfRelation", () => {
   describe("when a schema has a self relation", () => {

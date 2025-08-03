@@ -1,12 +1,12 @@
 import type { Prisma } from "@prisma/client";
 import Decimal from "decimal.js";
 import { describe, expect, expectTypeOf, it } from "vitest";
-import { db } from "../db";
 import {
   defineAllTypesFactory,
   defineUserEventLogFactory,
   defineUserFactory,
-} from "../generated/factories";
+} from "../../generated/factories";
+import { db } from "../db";
 
 describe("Basic", () => {
   describe("when a factory builds an object", () => {

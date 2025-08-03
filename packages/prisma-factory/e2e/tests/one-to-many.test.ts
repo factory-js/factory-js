@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
+import {
+  definePostFactory,
+  defineUserFactory,
+} from "../../generated/factories";
 import { db } from "../db";
-import { definePostFactory, defineUserFactory } from "../generated/factories";
 
 describe("OneToMany", () => {
   describe("when a schema has a one-to-many relation", () => {
