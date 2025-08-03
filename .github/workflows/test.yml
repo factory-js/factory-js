@@ -44,7 +44,7 @@ jobs:
 
       - name: Prepare env files
         run: |
-          cp packages/prisma-factory/e2e/.env.sample packages/prisma-factory/e2e/.env
+          cp packages/prisma-factory/.env.sample packages/prisma-factory/.env
 
       - name: Run test
         run: pnpm run test:coverage
