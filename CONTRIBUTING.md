@@ -94,7 +94,6 @@ If you'd like to propose a new feature, please let us know via an issue before s
    ```
 
    When you bump the version, please refer to the following guide.
-
    - `major`: This should never be used because FactoryJS is still < 1.0.0.
    - `minor`: Adding new features regardless of whether they introduce breaking changes.
    - `patch`: Fixing a bug and/or refactoring.
