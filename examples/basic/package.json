@@ -13,7 +13,7 @@
   "devDependencies": {
     "@factory-js/factory": "workspace:*",
     "@faker-js/faker": "^8.4.1",
-    "@types/better-sqlite3": "^7.6.9",
+    "@types/better-sqlite3": "^7.6.13",
     "@vitest/coverage-v8": "^3.1.1",
     "drizzle-kit": "^0.20.13",
     "lint-staged": "^13.2.1",
@@ -21,7 +21,7 @@
     "vitest": "^3.1.1"
   },
   "dependencies": {
-    "better-sqlite3": "^11.7.0",
+    "better-sqlite3": "^12.2.0",
     "drizzle-orm": "^0.29.3"
   }
 }
