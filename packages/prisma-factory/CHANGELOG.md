@@ -1,5 +1,11 @@
 # @factory-js/prisma-factory
 
+## 0.2.2
+
+### Patch Changes
+
+- 36d53c4: Update dependency packages
+
 ## 0.2.1
 
 ### Patch Changes
