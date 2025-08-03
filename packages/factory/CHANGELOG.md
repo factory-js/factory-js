@@ -1,5 +1,11 @@
 # @factory-js/factory
 
+## 0.4.1
+
+### Patch Changes
+
+- 36d53c4: Update dependency packages
+
 ## 0.4.0
 
 ### Minor Changes
