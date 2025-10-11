@@ -92,7 +92,7 @@ importers:
         version: 13.3.0(enquirer@2.4.1)
       typescript:
         specifier: 5.2.2
-        version: 5.9.3
+        version: 5.2.2
       vitest:
         specifier: ^3.1.1
         version: 3.2.4(@types/node@20.19.20)(jiti@2.5.1)(tsx@4.20.5)(yaml@2.8.1)
@@ -135,10 +135,10 @@ importers:
         version: link:../factory
       '@prisma/client':
         specifier: 6.14.0
-        version: 6.14.0(prisma@6.14.0(magicast@0.3.5)(typescript@5.9.3))(typescript@5.9.3)
+        version: 6.14.0(prisma@6.14.0(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2)
       '@prisma/internals':
         specifier: ^6.0.0
-        version: 6.14.0(magicast@0.3.5)(typescript@5.9.3)
+        version: 6.14.0(magicast@0.3.5)(typescript@5.9.2)
       '@types/node':
         specifier: 20.19.20
         version: 20.19.20
@@ -150,16 +150,16 @@ importers:
         version: 16.2.4
       prisma:
         specifier: ^6.0.0
-        version: 6.14.0(magicast@0.3.5)(typescript@5.9.3)
+        version: 6.14.0(magicast@0.3.5)(typescript@5.9.2)
       tsup:
         specifier: ^8.0.2
-        version: 8.5.0(jiti@2.5.1)(postcss@8.5.6)(tsx@4.20.5)(typescript@5.9.3)(yaml@2.8.1)
+        version: 8.5.0(jiti@2.5.1)(postcss@8.5.6)(tsx@4.20.5)(typescript@5.9.2)(yaml@2.8.1)
       tsx:
         specifier: ^4.7.1
         version: 4.20.5
       typescript:
         specifier: 5.9.2
-        version: 5.9.3
+        version: 5.9.2
       vitest:
         specifier: ^3.1.1
         version: 3.2.4(@types/node@20.19.20)(jiti@2.5.1)(tsx@4.20.5)(yaml@2.8.1)
@@ -3715,6 +3715,16 @@ packages:
       eslint: ^8.57.0 || ^9.0.0
       typescript: '>=4.8.4 <6.0.0'
 
+  typescript@5.2.2:
+    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@5.9.2:
+    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
     engines: {node: '>=14.17'}
@@ -4575,10 +4585,10 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@prisma/client@6.14.0(prisma@6.14.0(magicast@0.3.5)(typescript@5.9.3))(typescript@5.9.3)':
+  '@prisma/client@6.14.0(prisma@6.14.0(magicast@0.3.5)(typescript@5.9.2))(typescript@5.9.2)':
     optionalDependencies:
-      prisma: 6.14.0(magicast@0.3.5)(typescript@5.9.3)
-      typescript: 5.9.3
+      prisma: 6.14.0(magicast@0.3.5)(typescript@5.9.2)
+      typescript: 5.9.2
 
   '@prisma/config@6.14.0(magicast@0.3.5)':
     dependencies:
@@ -4636,7 +4646,7 @@ snapshots:
     dependencies:
       '@prisma/debug': 6.14.0
 
-  '@prisma/internals@6.14.0(magicast@0.3.5)(typescript@5.9.3)':
+  '@prisma/internals@6.14.0(magicast@0.3.5)(typescript@5.9.2)':
     dependencies:
       '@prisma/config': 6.14.0(magicast@0.3.5)
       '@prisma/debug': 6.14.0
@@ -4653,7 +4663,7 @@ snapshots:
       arg: 5.0.2
       prompts: 2.4.2
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - magicast
 
@@ -6909,12 +6919,12 @@ snapshots:
 
   prettier@3.6.2: {}
 
-  prisma@6.14.0(magicast@0.3.5)(typescript@5.9.3):
+  prisma@6.14.0(magicast@0.3.5)(typescript@5.9.2):
     dependencies:
       '@prisma/config': 6.14.0(magicast@0.3.5)
       '@prisma/engines': 6.14.0
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - magicast
 
@@ -7444,6 +7454,34 @@ snapshots:
   tslib@2.8.1:
     optional: true
 
+  tsup@8.5.0(jiti@2.5.1)(postcss@8.5.6)(tsx@4.20.5)(typescript@5.9.2)(yaml@2.8.1):
+    dependencies:
+      bundle-require: 5.1.0(esbuild@0.25.6)
+      cac: 6.7.14
+      chokidar: 4.0.3
+      consola: 3.4.2
+      debug: 4.4.1
+      esbuild: 0.25.6
+      fix-dts-default-cjs-exports: 1.0.1
+      joycon: 3.1.1
+      picocolors: 1.1.1
+      postcss-load-config: 6.0.1(jiti@2.5.1)(postcss@8.5.6)(tsx@4.20.5)(yaml@2.8.1)
+      resolve-from: 5.0.0
+      rollup: 4.45.0
+      source-map: 0.8.0-beta.0
+      sucrase: 3.35.0
+      tinyexec: 0.3.2
+      tinyglobby: 0.2.14
+      tree-kill: 1.2.2
+    optionalDependencies:
+      postcss: 8.5.6
+      typescript: 5.9.2
+    transitivePeerDependencies:
+      - jiti
+      - supports-color
+      - tsx
+      - yaml
+
   tsup@8.5.0(jiti@2.5.1)(postcss@8.5.6)(tsx@4.20.5)(typescript@5.9.3)(yaml@2.8.1):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.25.6)
@@ -7563,6 +7601,10 @@ snapshots:
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
+
+  typescript@5.2.2: {}
+
+  typescript@5.9.2: {}
 
   typescript@5.9.3: {}
 
