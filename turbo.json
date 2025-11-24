@@ -14,11 +14,11 @@
       "cache": false
     },
     "test": {
-      "dependsOn": ["db:reset"],
+      "dependsOn": ["db:reset", "db:generate"],
       "cache": false
     },
     "test:coverage": {
-      "dependsOn": ["db:reset"],
+      "dependsOn": ["db:reset", "db:generate"],
       "cache": false
     },
     "clean": {

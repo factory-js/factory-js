@@ -38,4 +38,35 @@ describe("ContentWriter", () => {
       );
     });
   });
+
+  describe("when a schema has enums", () => {
+    it("writes enum consts", async () => {
+      const dmmf = await getDMMF({
+        datamodel: `
+          enum Role {
+            USER
+            ADMIN
+          }
+          model User {
+            id   Int  @id
+            role Role
+          }
+        `,
+      });
+      const { enums, models } = dmmf.datamodel;
+      const value = removeIndents(
+        await format(
+          new ContentWriter({
+            enums,
+            models,
+            randModule: "rands",
+            prismaClientModule: "example/path/to/prisma/client",
+          }).write(),
+        ),
+      );
+      expect(value).toMatch(
+        removeIndents(`const Role = ["USER", "ADMIN"] as const;`),
+      );
+    });
+  });
 });
