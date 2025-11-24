@@ -4,5 +4,5 @@ import { users } from "../schema";
 
 export const isAdmin = async (userId: number) => {
   const user = await db.query.users.findFirst({ where: eq(users.id, userId) });
-  return user !== undefined && user.role === "admin";
+  return user?.role === "admin";
 };
