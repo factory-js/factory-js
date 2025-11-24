@@ -1,13 +1,11 @@
 generator client {
   provider        = "prisma-client-js"
-  output          = "./generated/prisma"
   previewFeatures = ["strictUndefinedChecks"]
 }
 
 generator factory {
   provider   = "tsx ./dist/bin.cjs"
   randModule = "../dist"
-  prismaClientModule = "./prisma"
 }
 
 datasource db {

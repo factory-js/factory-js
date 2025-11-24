@@ -1,3 +1,4 @@
+import type { Prisma } from "@prisma/client";
 import Decimal from "decimal.js";
 import { describe, expect, expectTypeOf, it } from "vitest";
 import {
@@ -5,7 +6,6 @@ import {
   defineUserEventLogFactory,
   defineUserFactory,
 } from "../../generated/factories";
-import type { Prisma } from "../../generated/prisma";
 import { db } from "../db";
 
 describe("Basic", () => {
