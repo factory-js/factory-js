@@ -3,6 +3,12 @@ import { expect, it, describe } from "vitest";
 import { rands } from "./rands";
 
 describe("#rands", () => {
+  describe("when a bigint value is generated", () => {
+    it("returns a value", () => {
+      expect(typeof rands.BigInt()).toBe("bigint");
+    });
+  });
+
   describe("when a byte value is generated", () => {
     it("returns a value", () => {
       expect(rands.Bytes()).toStrictEqual(expect.any(Buffer) as unknown);
