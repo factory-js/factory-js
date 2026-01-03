@@ -14,7 +14,7 @@ Also, we would appreciate it if you could consider adding tests to prevent the b
 
 ### Documentation
 
-If you would like to improve or fix the documentation, please submit a PR to the [factory-js.github.io](https://github.com/factory-js/factory-js.github.io) repository.
+If you would like to improve or fix the documentation, please edit this repository's README.md directly and submit a PR.
 
 ### Refactoring
 
