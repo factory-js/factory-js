@@ -73,7 +73,7 @@
   },
   "dependencies": {
     "@ngneat/falso": "^8.0.0",
-    "@prisma/generator-helper": "^6.0.0",
+    "@prisma/generator-helper": "^7.0.0",
     "decimal.js": "^10.4.3",
     "prettier": "^3.2.5"
   }
