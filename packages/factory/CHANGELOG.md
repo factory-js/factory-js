@@ -1,5 +1,11 @@
 # @factory-js/factory
 
+## 0.4.2
+
+### Patch Changes
+
+- 6f36b2d: Update Node.js to v24
+
 ## 0.4.1
 
 ### Patch Changes
