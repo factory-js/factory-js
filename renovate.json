@@ -7,6 +7,7 @@
     "helpers:pinGitHubActionDigests"
   ],
   "additionalBranchPrefix": "{{parentDir}}-",
+  "minimumReleaseAge": "3 days",
   "packageRules": [
     {
       "matchDepTypes": ["devDependencies"],

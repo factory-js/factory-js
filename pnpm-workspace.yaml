@@ -9,3 +9,5 @@ onlyBuiltDependencies:
   - better-sqlite3
   - esbuild
   - prisma
+
+minimumReleaseAge: 4320
