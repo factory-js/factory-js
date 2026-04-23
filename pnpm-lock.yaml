@@ -49,7 +49,7 @@ importers:
         version: 16.4.0
       prettier:
         specifier: ^3.2.5
-        version: 3.8.2
+        version: 3.8.3
       secretlint:
         specifier: ^11.0.0
         version: 11.7.1
@@ -122,13 +122,13 @@ importers:
         version: 8.0.2
       '@prisma/generator-helper':
         specifier: ^7.0.0
-        version: 7.7.0
+        version: 7.8.0
       decimal.js:
         specifier: ^10.4.3
         version: 10.6.0
       prettier:
         specifier: ^3.2.5
-        version: 3.8.2
+        version: 3.8.3
     devDependencies:
       '@factory-js/factory':
         specifier: workspace:*
@@ -1072,8 +1072,8 @@ packages:
   '@prisma/debug@7.3.0':
     resolution: {integrity: sha512-yh/tHhraCzYkffsI1/3a7SHX8tpgbJu1NPnuxS4rEpJdWAUDHUH25F1EDo6PPzirpyLNkgPPZdhojQK804BGtg==}
 
-  '@prisma/debug@7.7.0':
-    resolution: {integrity: sha512-12J62XdqCmpiwJHhHdQxZeY3ckVCWIFmcJP8hg5dPTceeiQ0wiojXGFYTluKqFQfu46fRLgb/rLALZMAx3+dTA==}
+  '@prisma/debug@7.8.0':
+    resolution: {integrity: sha512-p+QZReysDUqXC+mk17q9a+Y/qzh4c2KYliDK30buYUyfrGeTGSyfmc0AIrJRhZJrLHhRiJa9Au/J72h3C+szvA==}
 
   '@prisma/dev@0.20.0':
     resolution: {integrity: sha512-ovlBYwWor0OzG+yH4J3Ot+AneD818BttLA+Ii7wjbcLHUrnC4tbUPVGyNd3c/+71KETPKZfjhkTSpdS15dmXNQ==}
@@ -1081,8 +1081,8 @@ packages:
   '@prisma/dmmf@7.3.0':
     resolution: {integrity: sha512-LkalLBNFCmxpmnIuWI63363fWZqCS0oQa0+Zjv+xUaJjBKvRDgrU6MgTbkMib7XNekilhPHTUl2qSBOWnPK5vA==}
 
-  '@prisma/dmmf@7.7.0':
-    resolution: {integrity: sha512-YMoxhmnO4bEr+SnA8i8gY6ZII2KvLBoJVuaS5YPChFn/Ft92fq5GPMDoCBHZYFzTopj2zX3rgwq92/7AElXj0Q==}
+  '@prisma/dmmf@7.8.0':
+    resolution: {integrity: sha512-7xzcSFWO6J+dFUgIX7jL7QqUhEDfaa8GSZGsjjHyZct1Su+6KrvMl3S2+fnRkuKUIoTPg3Mj02oZuUdaNSfsaw==}
 
   '@prisma/driver-adapter-utils@7.3.0':
     resolution: {integrity: sha512-Wdlezh1ck0Rq2dDINkfSkwbR53q53//Eo1vVqVLwtiZ0I6fuWDGNPxwq+SNAIHnsU+FD/m3aIJKevH3vF13U3w==}
@@ -1099,14 +1099,14 @@ packages:
   '@prisma/generator-helper@7.3.0':
     resolution: {integrity: sha512-zqo63nu3ptu2CzAFjg6LXm4VQlB/XXaEFRUK3TjGViNosKr7izz6U/v2yVMXqEOL5tz2bUsSg2JxfcmNPl0IJw==}
 
-  '@prisma/generator-helper@7.7.0':
-    resolution: {integrity: sha512-uDx6dMuFz5ZeqsS6cHTvhBkuW9Pn6RssGCY3HitQojBNaPe2ml5D4ingFk1K6UQkWLBV7qvR3qjI0OHpvvPL2A==}
+  '@prisma/generator-helper@7.8.0':
+    resolution: {integrity: sha512-i+2Gad6D/0dS0YHKFdYX3M8KYN1gwNkET813WXKfW2HeWmgipmSJsNSzOA44kTM+Rx6Dev3yBQwx5sZXXdtgtQ==}
 
   '@prisma/generator@7.3.0':
     resolution: {integrity: sha512-PRjhVXu+oNLY2PDahZRRmOgctT17rtKCp9+2odfw2GIqHhdOTeGhX9scGNPsZujiGRz6txJwvor24FdxZfEWLw==}
 
-  '@prisma/generator@7.7.0':
-    resolution: {integrity: sha512-IZlQlHAixKKPRRssE9KdVY4X/l4LwL6SlUG/7k4bX9/6WXyHElUZisaGcsgJuv9rbQ7p/UmU06f5xAkSlS3LIg==}
+  '@prisma/generator@7.8.0':
+    resolution: {integrity: sha512-KHGB0b8/9pNWyiK9EPJNE2/v1bMtqJgJldqjNNVvoE4uOhNSSWTmhHhPVfRsiuOVybzHCdCUQ/gdidCbpYAD5w==}
 
   '@prisma/get-platform@7.2.0':
     resolution: {integrity: sha512-k1V0l0Td1732EHpAfi2eySTezyllok9dXb6UQanajkJQzPUGi3vO2z7jdkz67SypFTdmbnyGYxvEvYZdZsMAVA==}
@@ -3613,8 +3613,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.8.2:
-    resolution: {integrity: sha512-8c3mgTe0ASwWAJK+78dpviD+A8EqhndQPUBpNUIPt6+xWlIigCwfN01lWr9MAede4uqXGTEKeQWTvzb3vjia0Q==}
+  prettier@3.8.3:
+    resolution: {integrity: sha512-7igPTM53cGHMW8xWuVTydi2KO233VFiTNyF5hLJqpilHfmn8C8gPf+PS7dUT64YcXFbiMGZxS9pCSxL/Dxm/Jw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -5170,7 +5170,7 @@ snapshots:
 
   '@prisma/debug@7.3.0': {}
 
-  '@prisma/debug@7.7.0': {}
+  '@prisma/debug@7.8.0': {}
 
   '@prisma/dev@0.20.0(typescript@5.9.3)':
     dependencies:
@@ -5196,7 +5196,7 @@ snapshots:
 
   '@prisma/dmmf@7.3.0': {}
 
-  '@prisma/dmmf@7.7.0': {}
+  '@prisma/dmmf@7.8.0': {}
 
   '@prisma/driver-adapter-utils@7.3.0':
     dependencies:
@@ -5223,15 +5223,15 @@ snapshots:
       '@prisma/dmmf': 7.3.0
       '@prisma/generator': 7.3.0
 
-  '@prisma/generator-helper@7.7.0':
+  '@prisma/generator-helper@7.8.0':
     dependencies:
-      '@prisma/debug': 7.7.0
-      '@prisma/dmmf': 7.7.0
-      '@prisma/generator': 7.7.0
+      '@prisma/debug': 7.8.0
+      '@prisma/dmmf': 7.8.0
+      '@prisma/generator': 7.8.0
 
   '@prisma/generator@7.3.0': {}
 
-  '@prisma/generator@7.7.0': {}
+  '@prisma/generator@7.8.0': {}
 
   '@prisma/get-platform@7.2.0':
     dependencies:
@@ -7811,7 +7811,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  prettier@3.8.2: {}
+  prettier@3.8.3: {}
 
   prisma@7.3.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.3.5)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3):
     dependencies:
