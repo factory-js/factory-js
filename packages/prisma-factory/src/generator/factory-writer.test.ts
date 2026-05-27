@@ -1,3 +1,4 @@
+import type { DMMF } from "@prisma/generator-helper";
 import { getDMMF } from "@prisma/internals";
 import { expect, it, describe } from "vitest";
 import { format } from "../../vitest/utils/format";
@@ -15,7 +16,7 @@ describe("FactoryWriter", () => {
         }
       `,
       });
-      const model = dmmf.datamodel.models[0] ?? (undefined as never);
+      const model = dmmf.datamodel.models[0] as DMMF.Model;
       const value = removeIndents(
         await format(new FactoryWriter(model).write()),
       );
@@ -45,7 +46,7 @@ describe("FactoryWriter", () => {
         }
       `,
       });
-      const model = dmmf.datamodel.models[0] ?? (undefined as never);
+      const model = dmmf.datamodel.models[0] as DMMF.Model;
       const value = removeIndents(
         await format(new FactoryWriter(model).write()),
       );
@@ -75,7 +76,7 @@ describe("FactoryWriter", () => {
         }
       `,
       });
-      const model = dmmf.datamodel.models[1] ?? (undefined as never);
+      const model = dmmf.datamodel.models[1] as DMMF.Model;
       const value = removeIndents(
         await format(new FactoryWriter(model).write()),
       );
@@ -111,7 +112,7 @@ describe("FactoryWriter", () => {
         }
       `,
       });
-      const model = dmmf.datamodel.models[0] ?? (undefined as never);
+      const model = dmmf.datamodel.models[0] as DMMF.Model;
       const value = removeIndents(
         await format(new FactoryWriter(model).write()),
       );
@@ -140,7 +141,7 @@ describe("FactoryWriter", () => {
         }
       `,
       });
-      const model = dmmf.datamodel.models[1] ?? (undefined as never);
+      const model = dmmf.datamodel.models[1] as DMMF.Model;
       const value = removeIndents(
         await format(new FactoryWriter(model).write()),
       );
@@ -166,7 +167,7 @@ describe("FactoryWriter", () => {
         }
       `,
       });
-      const model = dmmf.datamodel.models[0] ?? (undefined as never);
+      const model = dmmf.datamodel.models[0] as DMMF.Model;
       const value = removeIndents(
         await format(new FactoryWriter(model).write()),
       );
