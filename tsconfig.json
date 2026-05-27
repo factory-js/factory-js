@@ -3,6 +3,7 @@
   "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
     "target": "es2020",
+    "ignoreDeprecations": "6.0",
     "lib": ["esnext"],
     "noEmit": true,
     "module": "esnext",

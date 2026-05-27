@@ -91,8 +91,8 @@ importers:
         specifier: ^13.2.1
         version: 13.3.0(enquirer@2.4.1)
       typescript:
-        specifier: 5.2.2
-        version: 5.2.2
+        specifier: ^6.0.0
+        version: 6.0.3
       vitest:
         specifier: ^3.1.1
         version: 3.2.4(@types/node@20.19.41)(jiti@2.7.0)(tsx@4.22.3)(yaml@2.9.0)
@@ -103,14 +103,14 @@ importers:
         specifier: ^4.0.0
         version: 4.1.7(vitest@4.1.7)
       lint-staged:
-        specifier: ^16.0.0
-        version: 16.4.0
+        specifier: ^17.0.0
+        version: 17.0.5
       tsup:
         specifier: ^8.0.2
-        version: 8.5.1(jiti@2.7.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0)
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@6.0.3)(yaml@2.9.0)
       typescript:
-        specifier: 5.9.3
-        version: 5.9.3
+        specifier: 6.0.3
+        version: 6.0.3
       vitest:
         specifier: ^4.0.0
         version: 4.1.7(@types/node@20.19.41)(@vitest/coverage-v8@4.1.7)(vite@7.3.1(@types/node@20.19.41)(jiti@2.7.0)(tsx@4.22.3)(yaml@2.9.0))
@@ -138,10 +138,10 @@ importers:
         version: 7.8.0
       '@prisma/client':
         specifier: 7.8.0
-        version: 7.8.0(prisma@7.8.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.5.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3))(typescript@5.9.3)
+        version: 7.8.0(prisma@7.8.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.5.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@6.0.3))(typescript@6.0.3)
       '@prisma/internals':
         specifier: ^7.0.0
-        version: 7.8.0(magicast@0.5.3)(typescript@5.9.3)
+        version: 7.8.0(magicast@0.5.3)(typescript@6.0.3)
       '@types/node':
         specifier: 20.19.41
         version: 20.19.41
@@ -162,16 +162,16 @@ importers:
         version: 8.21.0
       prisma:
         specifier: ^7.0.0
-        version: 7.8.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.5.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
+        version: 7.8.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.5.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@6.0.3)
       tsup:
         specifier: ^8.0.2
-        version: 8.5.1(jiti@2.7.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0)
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@6.0.3)(yaml@2.9.0)
       tsx:
         specifier: ^4.7.1
         version: 4.22.3
       typescript:
-        specifier: 5.9.3
-        version: 5.9.3
+        specifier: ^6.0.0
+        version: 6.0.3
       vitest:
         specifier: ^4.0.0
         version: 4.1.7(@types/node@20.19.41)(@vitest/coverage-v8@4.1.7)(vite@7.3.1(@types/node@20.19.41)(jiti@2.7.0)(tsx@4.22.3)(yaml@2.9.0))
@@ -4399,16 +4399,6 @@ packages:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
 
-  typescript@5.2.2:
-    resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
-    engines: {node: '>=14.17'}
-    hasBin: true
-
   typescript@6.0.3:
     resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
@@ -5412,12 +5402,12 @@ snapshots:
 
   '@prisma/client-runtime-utils@7.8.0': {}
 
-  '@prisma/client@7.8.0(prisma@7.8.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.5.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3))(typescript@5.9.3)':
+  '@prisma/client@7.8.0(prisma@7.8.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.5.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@6.0.3))(typescript@6.0.3)':
     dependencies:
       '@prisma/client-runtime-utils': 7.8.0
     optionalDependencies:
-      prisma: 7.8.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.5.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
-      typescript: 5.9.3
+      prisma: 7.8.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.5.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@6.0.3)
+      typescript: 6.0.3
 
   '@prisma/config@7.8.0(magicast@0.5.3)':
     dependencies:
@@ -5432,7 +5422,7 @@ snapshots:
 
   '@prisma/debug@7.8.0': {}
 
-  '@prisma/dev@0.24.3(typescript@5.9.3)':
+  '@prisma/dev@0.24.3(typescript@6.0.3)':
     dependencies:
       '@electric-sql/pglite': 0.4.1
       '@electric-sql/pglite-socket': 0.1.1(@electric-sql/pglite@0.4.1)
@@ -5449,7 +5439,7 @@ snapshots:
       proper-lockfile: 4.1.2
       remeda: 2.33.4
       std-env: 3.10.0
-      valibot: 1.2.0(typescript@5.9.3)
+      valibot: 1.2.0(typescript@6.0.3)
       zeptomatch: 2.1.0
     transitivePeerDependencies:
       - typescript
@@ -5499,7 +5489,7 @@ snapshots:
     dependencies:
       '@prisma/debug': 7.8.0
 
-  '@prisma/internals@7.8.0(magicast@0.5.3)(typescript@5.9.3)':
+  '@prisma/internals@7.8.0(magicast@0.5.3)(typescript@6.0.3)':
     dependencies:
       '@prisma/config': 7.8.0(magicast@0.5.3)
       '@prisma/debug': 7.8.0
@@ -5518,7 +5508,7 @@ snapshots:
       arg: 5.0.2
       prompts: 2.4.2
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - magicast
 
@@ -8141,17 +8131,17 @@ snapshots:
 
   prettier@3.8.3: {}
 
-  prisma@7.8.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.5.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@5.9.3):
+  prisma@7.8.0(@types/react@19.2.7)(better-sqlite3@12.2.0)(magicast@0.5.3)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(typescript@6.0.3):
     dependencies:
       '@prisma/config': 7.8.0(magicast@0.5.3)
-      '@prisma/dev': 0.24.3(typescript@5.9.3)
+      '@prisma/dev': 0.24.3(typescript@6.0.3)
       '@prisma/engines': 7.8.0
       '@prisma/studio-core': 0.27.3(@types/react@19.2.7)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       mysql2: 3.15.3
       postgres: 3.4.7
     optionalDependencies:
       better-sqlite3: 12.2.0
-      typescript: 5.9.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
@@ -8752,7 +8742,7 @@ snapshots:
   tslib@2.8.1:
     optional: true
 
-  tsup@8.5.1(jiti@2.7.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@5.9.3)(yaml@2.9.0):
+  tsup@8.5.1(jiti@2.7.0)(postcss@8.5.15)(tsx@4.22.3)(typescript@6.0.3)(yaml@2.9.0):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.27.0)
       cac: 6.7.14
@@ -8773,7 +8763,7 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.5.15
-      typescript: 5.9.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - jiti
       - supports-color
@@ -8857,10 +8847,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  typescript@5.2.2: {}
-
-  typescript@5.9.3: {}
-
   typescript@6.0.3: {}
 
   ufo@1.6.1: {}
@@ -8914,9 +8900,9 @@ snapshots:
 
   uuid@8.3.2: {}
 
-  valibot@1.2.0(typescript@5.9.3):
+  valibot@1.2.0(typescript@6.0.3):
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 6.0.3
 
   validate-npm-package-license@3.0.4:
     dependencies:
