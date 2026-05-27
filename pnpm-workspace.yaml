@@ -11,3 +11,6 @@ onlyBuiltDependencies:
   - prisma
 
 minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  # Renovate security update: turbo@2.9.14
+  - turbo@2.9.14
