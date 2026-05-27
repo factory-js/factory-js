@@ -11,7 +11,7 @@ export const mapValuesAsync = async <T extends UnknownRecord, R>(
   iteratee: Iteratee<T, R>,
 ) => {
   const promises = Object.entries(record).map(async ([key, value]) => {
-    const newValue = await iteratee(value as T[keyof T], key as keyof T);
+    const newValue = await iteratee(value as T[keyof T], key);
     return [key, newValue];
   });
   return Object.fromEntries((await Promise.all(promises)) as [[keyof T, R]]);

@@ -1,3 +1,4 @@
+import type { DMMF } from "@prisma/generator-helper";
 import { getDMMF } from "@prisma/internals";
 import { expect, it, describe } from "vitest";
 import { format } from "../../vitest/utils/format";
@@ -15,7 +16,7 @@ describe("EnumWriter", () => {
         }
       `,
       });
-      const enumValue = dmmf.datamodel.enums[0] ?? (undefined as never);
+      const enumValue = dmmf.datamodel.enums[0] as DMMF.DatamodelEnum;
       expect(
         removeIndents(await format(new EnumWriter(enumValue).write())),
       ).toMatch(removeIndents('const Role = ["USER", "ADMIN"] as const'));

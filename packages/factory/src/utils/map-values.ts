@@ -10,7 +10,7 @@ export const mapValues = <T extends UnknownRecord, R>(
   iteratee: Iteratee<T, R>,
 ) => {
   const entries = Object.entries(record).map(([key, value]) => {
-    const newValue = iteratee(value as T[keyof T], key as keyof T);
+    const newValue = iteratee(value as T[keyof T], key);
     return [key, newValue];
   }) as [[keyof T, R]];
   return Object.fromEntries(entries);
