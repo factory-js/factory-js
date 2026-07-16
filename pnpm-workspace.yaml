@@ -14,3 +14,10 @@ minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   # Renovate security update: turbo@2.9.14
   - turbo@2.9.14
+allowBuilds:
+  "@prisma/engines": true
+  better-sqlite3: true
+  es5-ext: true
+  esbuild: true
+  prisma: true
+  unrs-resolver: true
