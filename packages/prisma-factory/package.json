@@ -57,9 +57,9 @@
   "devDependencies": {
     "@factory-js/factory": "workspace:*",
     "@prisma/adapter-pg": "^7.0.0",
-    "@prisma/client": "7.8.0",
+    "@prisma/client": "7.9.0",
     "@prisma/internals": "^7.0.0",
-    "@types/node": "24.12.4",
+    "@types/node": "24.13.3",
     "@types/pg": "^8.15.6",
     "@vitest/coverage-v8": "^4.0.0",
     "dotenv": "^17.2.3",
