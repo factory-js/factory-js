@@ -61,15 +61,15 @@
     "@prisma/internals": "^7.0.0",
     "@types/node": "24.12.4",
     "@types/pg": "^8.15.6",
-    "@vitest/coverage-v8": "^4.0.0",
+    "@vitest/coverage-v8": "^5.0.0",
     "dotenv": "^17.2.3",
     "lint-staged": "^17.0.0",
     "pg": "^8.16.3",
     "prisma": "^7.0.0",
     "tsup": "^8.0.2",
     "tsx": "^4.7.1",
-    "typescript": "^6.0.0",
-    "vitest": "^4.0.0"
+    "typescript": "^7.0.0",
+    "vitest": "^5.0.0"
   },
   "dependencies": {
     "@ngneat/falso": "^8.0.0",
